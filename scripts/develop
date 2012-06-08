@@ -1,0 +1,9 @@
+coffee --watch --compile --join output/game.js \
+	source/modules \
+	source/code &
+coffee --watch --compile --join output/test.js \
+	source/modules \
+	source/code \
+	test/code &
+
+read
