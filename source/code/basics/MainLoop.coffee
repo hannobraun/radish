@@ -1,5 +1,5 @@
 module "MainLoop", [], ->
-	maxPassedTimeInMs = 1000 / 30
+	maxFrameTimeInMs = 1000 / 30
 
 	defaultCallNextFrame =
 		window.requestAnimationFrame ||
@@ -20,17 +20,17 @@ module "MainLoop", [], ->
 			previousTimeInMs = null
 
 			mainLoop = ( currentTimeInMs ) ->
-				passedTimeInMs   = currentTimeInMs - previousTimeInMs
+				frameTimeInMs    = currentTimeInMs - previousTimeInMs
 				previousTimeInMs = currentTimeInMs
 
-				passedTimeInMs = Math.min( passedTimeInMs, maxPassedTimeInMs )
+				frameTimeInMs = Math.min( frameTimeInMs, maxFrameTimeInMs )
 
-				currentTimeInS = currentTimeInMs / 1000
-				passedTimeInS  = passedTimeInMs  / 1000
+				gameTimeInS  = currentTimeInMs / 1000
+				frameTimeInS = frameTimeInMs   / 1000
 
 				f(
-					currentTimeInS,
-					passedTimeInS )
+					gameTimeInS,
+					frameTimeInS )
 
 				callNextFrame( mainLoop )
 

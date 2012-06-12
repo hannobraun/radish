@@ -16,7 +16,7 @@ module "MainLoopTest", [ "MainLoop" ], ( MainLoop ) ->
 
 			expect( numberOfCalls ).to.equal( 2 )
 
-		it "should pass the current time and the passed time into the function (in seconds)", ->
+		it "should pass the game time and the frame time into the function (in seconds)", ->
 			i = 0
 			callNextFrame = ( f ) ->
 				i += 1
@@ -24,19 +24,19 @@ module "MainLoopTest", [ "MainLoop" ], ( MainLoop ) ->
 					when 1 then f( 9000 )
 					when 2 then f( 9010 )
 
-			lastCurrentTimeInS = null
-			lastPassedTimeInS  = null
+			lastGameTimeInS  = null
+			lastFrameTimeInS = null
 			MainLoop.execute(
-				( currentTimeInS, passedTimeInS ) ->
-					lastCurrentTimeInS = currentTimeInS
-					lastPassedTimeInS  = passedTimeInS
+				( gameTimeInS, frameTimeInS ) ->
+					lastGameTimeInS  = gameTimeInS
+					lastFrameTimeInS = frameTimeInS
 				,
 				callNextFrame )
 
-			expect( lastCurrentTimeInS ).to.equal( 9.01 )
-			expect( lastPassedTimeInS  ).to.equal( 0.01 )
+			expect( lastGameTimeInS  ).to.equal( 9.01 )
+			expect( lastFrameTimeInS ).to.equal( 0.01 )
 
-		it "should never call with a passed time equivalent to greater than 30 Hz, no matter how much time has passed", ->
+		it "should never call with a frame time equivalent to a frequency greater than 30 Hz, no matter how much time has passed", ->
 			i = 0
 			callNextFrame = ( f ) ->
 				i += 1
@@ -46,14 +46,14 @@ module "MainLoopTest", [ "MainLoop" ], ( MainLoop ) ->
 
 			getCurrentTimeInMs = -> 8000
 
-			thePassedTimeInS = null
+			theFrameTimeInS = null
 			MainLoop.execute(
-				( currentTimeInS, passedTimeInS ) ->
-					thePassedTimeInS  = passedTimeInS
+				( gameTimeInS, frameTimeInS ) ->
+					theFrameTimeInS  = frameTimeInS
 				,
 				callNextFrame,
 				getCurrentTimeInMs )
 
-			expect( thePassedTimeInS ).to.equal( 1 / 30 )
+			expect( theFrameTimeInS ).to.equal( 1 / 30 )
 
 load( "MainLoopTest" )
