@@ -57,11 +57,11 @@ module "Logic", [ "Input", "Entities", "Vec2" ], ( Input, Entities, Vec2 ) ->
 				radius: 100,
 				speed : -1 } )
 
-		updateGameState: ( gameState, currentInput, timeInS, passedTimeInS ) ->
+		updateGameState: ( gameState, currentInput, gameTimeInS, frameTimeInS ) ->
 			for entityId, position of gameState.components.positions
 				movement = gameState.components.movements[ entityId ]
 
-				angle = timeInS * movement.speed
+				angle = gameTimeInS * movement.speed
 				position[ 0 ] = movement.radius * Math.cos( angle )
 				position[ 1 ] = movement.radius * Math.sin( angle )
 
