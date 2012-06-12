@@ -27,9 +27,6 @@ module "Logic", [ "Input", "Entities", "Vec2" ], ( Input, Entities, Vec2 ) ->
 	module =
 		createGameState: ->
 			gameState =
-				# Change this, if you want the camera to point somewhere else.
-				focus: [ 0, 0 ]
-
 				# Game entities are made up of components. The components will
 				# be stored in this map.
 				components: {}
