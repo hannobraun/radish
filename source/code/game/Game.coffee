@@ -22,12 +22,12 @@ module "Game", [ "Images", "Rendering", "Input", "MainLoop", "Logic", "Graphics"
 
 		Logic.initGameState( gameState )
 
-		MainLoop.execute ( currentTimeInS, passedTimeInS ) ->
+		MainLoop.execute ( gameTimeInS, frameTimeInS ) ->
 			Logic.updateGameState(
 				gameState,
 				currentInput,
-				currentTimeInS,
-				passedTimeInS )
+				gameTimeInS,
+				frameTimeInS )
 			Graphics.updateRenderState(
 				renderState,
 				gameState )
