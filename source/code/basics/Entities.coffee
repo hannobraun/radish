@@ -1,4 +1,4 @@
-module "Entities", [], ->
+module "Entities", [], ( m ) ->
 	module =
 		createEntity: ( factories, components, type, args ) ->
 			factory = factories[ type ]
@@ -13,6 +13,8 @@ module "Entities", [], ->
 					components[ componentName ] = {}
 
 				components[ componentName ][ entity.id ] = component
+
+			entity.id
 
 		destroyEntity: ( components, entityId ) ->
 			for componentType, componentMap of components

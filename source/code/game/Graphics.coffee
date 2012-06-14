@@ -1,4 +1,4 @@
-module "Graphics", [ "Rendering", "Vec2" ], ( Rendering, Vec2 ) ->
+module "Graphics", [ "Rendering", "Vec2" ], ( m ) ->
 	module =
 		createRenderState: ->
 			renderState =
@@ -10,8 +10,8 @@ module "Graphics", [ "Rendering", "Vec2" ], ( Rendering, Vec2 ) ->
 			for entityId, position of gameState.components.positions
 				imageId = gameState.components.imageIds[ entityId ]
 
-				renderable = Rendering.createRenderable( "image" )
-				renderable.resourceId = imageId
-				renderable.position   = Vec2.copy( position )
+				renderable = m.Rendering.createRenderable( "image", {
+					position: position },
+					imageId )
 
 				renderState.renderables.push( renderable )

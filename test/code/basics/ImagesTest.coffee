@@ -1,4 +1,4 @@
-module "ImagesTest", [ "Images" ], ( Images ) ->
+module "ImagesTest", [ "Images" ], ( m ) ->
 	imageDataFrom = ( image ) ->
 		canvas = document.createElement( "canvas" )
 		canvas.width  = image.width
@@ -29,7 +29,7 @@ module "ImagesTest", [ "Images" ], ( Images ) ->
 				"images/1x1red.png"
 				"images/1x1green.png" ]
 
-			Images.loadImages imagePaths, ( images ) ->
+			m.Images.loadImages imagePaths, ( images ) ->
 				red   = imageDataFrom( images[ imagePaths[ 0 ] ] )
 				green = imageDataFrom( images[ imagePaths[ 1 ] ] )
 
@@ -39,22 +39,22 @@ module "ImagesTest", [ "Images" ], ( Images ) ->
 
 		it "should create an image data structure from the images", ->
 			rawImages =
-				"some/image.png":
+				"images/some/image.png":
 					width : 16
 					height: 64
-				"other/image.png":
+				"images/other/image.png":
 					width : 32
 					height: 32
 
-			images = Images.process( rawImages )
+			images = m.Images.process( rawImages )
 
 			expectedImages =
 				"some/image.png":
-					rawImage: rawImages[ "some/image.png" ]
+					rawImage: rawImages[ "images/some/image.png" ]
 					positionOffset: [ -8, -32 ]
 					orientationOffset: 0
 				"other/image.png":
-					rawImage: rawImages[ "other/image.png" ]
+					rawImage: rawImages[ "images/other/image.png" ]
 					positionOffset: [ -16, -16 ]
 					orientationOffset: 0
 			expect( images ).to.eql( expectedImages )

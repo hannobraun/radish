@@ -1,4 +1,4 @@
-module "Logic", [ "Input", "Entities", "Vec2" ], ( Input, Entities, Vec2 ) ->
+module "Logic", [ "Input", "Entities", "Vec2" ], ( m ) ->
 	nextEntityId = 0
 
 	entityFactories =
@@ -16,7 +16,7 @@ module "Logic", [ "Input", "Entities", "Vec2" ], ( Input, Entities, Vec2 ) ->
 				components:
 					"positions": [ 0, 0 ]
 					"movements": movement
-					"imageIds" : "images/star.png"
+					"imageIds" : "star.png"
 
 	# There are functions for creating and destroying entities in the Entities
 	# module. We will mostly use shortcuts however. They are declared here and
@@ -35,13 +35,13 @@ module "Logic", [ "Input", "Entities", "Vec2" ], ( Input, Entities, Vec2 ) ->
 			# These are the shortcuts we will use for creating and destroying
 			# entities.
 			createEntity = ( type, args ) ->
-				Entities.createEntity(
+				m.Entities.createEntity(
 					entityFactories,
 					gameState.components,
 					type,
 					args )
 			destroyEntity = ( entityId ) ->
-				Entities.destroyEntity(
+				m.Entities.destroyEntity(
 					gameState.components,
 					entityId )
 
@@ -62,4 +62,4 @@ module "Logic", [ "Input", "Entities", "Vec2" ], ( Input, Entities, Vec2 ) ->
 				position[ 0 ] = movement.radius * Math.cos( angle )
 				position[ 1 ] = movement.radius * Math.sin( angle )
 
-				Vec2.add( position, currentInput.pointerPosition )
+				m.Vec2.add( position, currentInput.pointerPosition )

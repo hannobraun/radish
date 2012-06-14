@@ -1,6 +1,6 @@
-module "Main", [ "Images", "Rendering", "Input", "MainLoop", "Logic", "Graphics" ], ( Images, Rendering, Input, MainLoop, Logic, Graphics )->
-	Images.loadImages [ "images/star.png" ], ( rawImages ) ->
-		images = Images.process( rawImages )
+module "Main", [ "Images", "Rendering", "Input", "MainLoop", "Logic", "Graphics" ], ( m )->
+	m.Images.loadImages [ "images/star.png" ], ( rawImages ) ->
+		images = m.Images.process( rawImages )
 
 		renderData =
 			"image": images
@@ -8,31 +8,31 @@ module "Main", [ "Images", "Rendering", "Input", "MainLoop", "Logic", "Graphics"
 		# Some keys have unwanted default behavior on websites, like scrolling.
 		# Fortunately we can tell the Input module to prevent the default
 		# behavior of some keys.
-		Input.preventDefaultFor( [
+		m.Input.preventDefaultFor( [
 			"up arrow"
 			"down arrow"
 			"left arrow"
 			"right arrow"
 			"space" ] )
 
-		display      = Rendering.createDisplay()
-		currentInput = Input.createCurrentInput( display )
-		gameState    = Logic.createGameState()
-		renderState  = Graphics.createRenderState()
+		display      = m.Rendering.createDisplay()
+		currentInput = m.Input.createCurrentInput( display )
+		gameState    = m.Logic.createGameState()
+		renderState  = m.Graphics.createRenderState()
 
-		Logic.initGameState( gameState )
+		m.Logic.initGameState( gameState )
 
-		MainLoop.execute ( gameTimeInS, frameTimeInS ) ->
-			Logic.updateGameState(
+		m.MainLoop.execute ( gameTimeInS, frameTimeInS ) ->
+			m.Logic.updateGameState(
 				gameState,
 				currentInput,
 				gameTimeInS,
 				frameTimeInS )
-			Graphics.updateRenderState(
+			m.Graphics.updateRenderState(
 				renderState,
 				gameState )
-			Rendering.render(
-				Rendering.drawFunctions,
+			m.Rendering.render(
+				m.Rendering.drawFunctions,
 				display,
 				renderData,
 				renderState.renderables )

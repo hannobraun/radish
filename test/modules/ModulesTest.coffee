@@ -4,7 +4,7 @@ describe "Modules", ->
 	
 	it "should define a simple module without dependencies", ->
 		moduleLoaded = false
-		module "Module", [], ->
+		module "Module", [], ( m ) ->
 			moduleLoaded = true
 
 		load( "Module" )
@@ -14,11 +14,11 @@ describe "Modules", ->
 	it "should pass a module's dependency into a module", ->
 		dependencyModule = ""
 
-		module "Dependency", [], ->
+		module "Dependency", [], ( m ) ->
 			"dependency"
 
-		module "Module", [ "Dependency" ], ( Dependency ) ->
-			dependencyModule = Dependency
+		module "Module", [ "Dependency" ], ( m ) ->
+			dependencyModule = m.Dependency
 
 		load( "Module" )
 
@@ -27,24 +27,24 @@ describe "Modules", ->
 	it "should load every module only once", ->
 		timesLoaded = 0
 
-		module "Dependency", [], ->
+		module "Dependency", [], ( m ) ->
 			timesLoaded += 1
 
-		module "ModuleA", [ "Dependency" ], ->
+		module "ModuleA", [ "Dependency" ], ( m ) ->
 
-		module "ModuleB", [ "Dependency" ], ->
+		module "ModuleB", [ "Dependency" ], ( m ) ->
 
-		module "MainModule", [ "ModuleA", "ModuleB" ], ->
+		module "MainModule", [ "ModuleA", "ModuleB" ], ( m ) ->
 
 		load( "MainModule" )
 
 		expect( timesLoaded ).to.equal( 1 )
 
 	it "should throw an error, if two modules are defined with the same id", ->
-		module "Module", [], ->
+		module "Module", [], ( m ) ->
 
 		caughtError = try
-			module "Module", [], ->
+			module "Module", [], ( m ) ->
 			false
 		catch error
 			true
@@ -52,7 +52,7 @@ describe "Modules", ->
 		expect( caughtError ).to.equal( true )
 
 	it "should throw a nice error message, if a a module is loaded that doesn't exist", ->
-		module "Module", [], ->
+		module "Module", [], ( m ) ->
 
 		error = try
 			load( "NonExistingModule" )
@@ -63,7 +63,7 @@ describe "Modules", ->
 		expect( error ).to.contain( "NonExistingModule" )
 
 	it "should throw a nice error message, if a dependency does not exist", ->
-		module "ExistingModule", [ "NonExistingModule" ], ->
+		module "ExistingModule", [ "NonExistingModule" ], ( m ) ->
 
 		error = try
 			load( "ExistingModule" )

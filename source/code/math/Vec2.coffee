@@ -1,4 +1,4 @@
-module "Vec2", [], ->
+module "Vec2", [], ( m ) ->
 	module =
 		copy: ( v ) ->
 			[ v[ 0 ], v[ 1 ] ]
@@ -25,6 +25,9 @@ module "Vec2", [], ->
 		dot: ( v1, v2 ) ->
 			v1[ 0 ]*v2[ 0 ] + v1[ 1 ]*v2[ 1 ]
 
+		perpDot: ( v1, v2 ) ->
+			-v1[ 1 ]*v2[ 0 ] + v1[ 0 ]*v2[ 1 ]
+
 		length: ( v ) ->
 			Math.sqrt( v[ 0 ]*v[ 0 ] + v[ 1 ]*v[ 1 ] )
 
@@ -36,7 +39,7 @@ module "Vec2", [], ->
 			v[ 0 ] /= length
 			v[ 1 ] /= length
 
-		orthogonal: ( v ) ->
+		perp: ( v ) ->
 			x = v[ 0 ]
 			y = v[ 1 ]
 

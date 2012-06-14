@@ -1,4 +1,4 @@
-module "MainLoopTest", [ "MainLoop" ], ( MainLoop ) ->
+module "MainLoopTest", [ "MainLoop" ], ( m ) ->
 	describe "MainLoop", ->
 		it "should execute the given function while callNextFrame keeps re-scheduling the function", ->
 			numberOfSchedulings = 2
@@ -8,7 +8,7 @@ module "MainLoopTest", [ "MainLoop" ], ( MainLoop ) ->
 					f()
 
 			numberOfCalls = 0
-			MainLoop.execute(
+			m.MainLoop.execute(
 				->
 					numberOfCalls += 1
 				,
@@ -24,19 +24,22 @@ module "MainLoopTest", [ "MainLoop" ], ( MainLoop ) ->
 					when 1 then f( 9000 )
 					when 2 then f( 9010 )
 
-			lastGameTimeInS  = null
-			lastFrameTimeInS = null
-			MainLoop.execute(
+			lastGameTimeInS   = null
+			lastFrameTimeInS  = null
+			totalFrameTimeInS = 0
+			m.MainLoop.execute(
 				( gameTimeInS, frameTimeInS ) ->
 					lastGameTimeInS  = gameTimeInS
 					lastFrameTimeInS = frameTimeInS
+
+					totalFrameTimeInS += frameTimeInS
 				,
 				callNextFrame )
 
-			expect( lastGameTimeInS  ).to.equal( 9.01 )
+			expect( lastGameTimeInS  ).to.equal( totalFrameTimeInS )
 			expect( lastFrameTimeInS ).to.equal( 0.01 )
 
-		it "should never call with a frame time equivalent to a frequency greater than 30 Hz, no matter how much time has passed", ->
+		it "should never call with a passed time equivalent to greater than 30 Hz, no matter how much time has passed", ->
 			i = 0
 			callNextFrame = ( f ) ->
 				i += 1
@@ -47,13 +50,14 @@ module "MainLoopTest", [ "MainLoop" ], ( MainLoop ) ->
 			getCurrentTimeInMs = -> 8000
 
 			theFrameTimeInS = null
-			MainLoop.execute(
+			m.MainLoop.execute(
 				( gameTimeInS, frameTimeInS ) ->
-					theFrameTimeInS  = frameTimeInS
+					theFrameTimeInS = frameTimeInS
 				,
 				callNextFrame,
 				getCurrentTimeInMs )
 
 			expect( theFrameTimeInS ).to.equal( 1 / 30 )
+
 
 load( "MainLoopTest" )

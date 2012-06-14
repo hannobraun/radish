@@ -1,4 +1,4 @@
-module "Images", [], ->
+module "Images", [], ( m ) ->
 	module =
 		loadImages: ( imagePaths, onLoad ) ->
 			images = {}
@@ -19,7 +19,9 @@ module "Images", [], ->
 		process: ( rawImages ) ->
 			images = {}
 
-			for imageId, rawImage of rawImages
+			for imagePath, rawImage of rawImages
+				imageId = imagePath.substring( imagePath.indexOf( "/" ) + 1 )
+				
 				images[ imageId ] =
 					rawImage: rawImage
 					positionOffset: [ -rawImage.width / 2, -rawImage.height / 2]

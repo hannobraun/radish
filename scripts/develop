@@ -4,6 +4,7 @@ coffee --watch --compile --join output/game.js \
 coffee --watch --compile --join output/test.js \
 	source/modules \
 	source/code \
+	test/modules \
 	test/code &
 
 read

@@ -1,4 +1,4 @@
-module "Input", [], ->
+module "Input", [], ( m ) ->
 	keyNamesByCode =
 		8  : "backspace"
 		9  : "tab"

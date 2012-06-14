@@ -1,4 +1,4 @@
-module "MainLoop", [], ->
+module "MainLoop", [], ( m ) ->
 	maxFrameTimeInMs = 1000 / 30
 
 	defaultCallNextFrame =
@@ -18,6 +18,7 @@ module "MainLoop", [], ->
 			callNextFrame = callNextFrame || defaultCallNextFrame
 
 			previousTimeInMs = null
+			gameTimeInS      = 0
 
 			mainLoop = ( currentTimeInMs ) ->
 				frameTimeInMs    = currentTimeInMs - previousTimeInMs
@@ -25,8 +26,8 @@ module "MainLoop", [], ->
 
 				frameTimeInMs = Math.min( frameTimeInMs, maxFrameTimeInMs )
 
-				gameTimeInS  = currentTimeInMs / 1000
-				frameTimeInS = frameTimeInMs   / 1000
+				frameTimeInS = frameTimeInMs / 1000
+				gameTimeInS += frameTimeInS
 
 				f(
 					gameTimeInS,

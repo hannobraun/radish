@@ -21,14 +21,17 @@ window.load = ( moduleName, loadedModules ) ->
 	unless loadedModules[ moduleName ]?
 		module = window.modules[ moduleName ]
 
-		dependencies = for dependencyName in module.dependencyNames
+		dependencies = {}
+		for dependencyName in module.dependencyNames
 			unless modules[ dependencyName ]?
 				throw
 					"A module called \"#{ dependencyName }\" (defined as a " +
 					"dependency in \"#{ moduleName }\") does not exist."
-			load( dependencyName, loadedModules )
+			
+			dependencies[ dependencyName ] =
+				load( dependencyName, loadedModules )
 
 		loadedModules[ moduleName ] =
-			module.factory.apply( undefined, dependencies )
+			module.factory( dependencies )
 	
 	loadedModules[ moduleName ]

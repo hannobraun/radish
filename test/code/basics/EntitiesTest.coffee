@@ -1,4 +1,4 @@
-module "EntitiesTest", [ "Entities" ], ( Entities ) ->
+module "EntitiesTest", [ "Entities" ], ( m ) ->
 	describe "Entities", ->
 		describe "createEntity", ->
 			it "should pass the creation arguments to the entity factory", ->
@@ -9,7 +9,7 @@ module "EntitiesTest", [ "Entities" ], ( Entities ) ->
 					"myEntity": ( args ) ->
 						receivedArgs = args
 
-				Entities.createEntity( entityFactories, {}, "myEntity", args )
+				m.Entities.createEntity( entityFactories, {}, "myEntity", args )
 
 				expect( receivedArgs ).to.eql( args )
 
@@ -28,10 +28,33 @@ module "EntitiesTest", [ "Entities" ], ( Entities ) ->
 								"componentA": componentA
 								"componentB": componentB
 
-				Entities.createEntity( entityFactories, components, "myEntity", {} )
+				m.Entities.createEntity( entityFactories, components, "myEntity", {} )
 
 				expect( components[ "componentA" ][ id ] ).to.be( componentA )
 				expect( components[ "componentB" ][ id ] ).to.be( componentB )
+
+			it "should return the id of the created entity", ->
+				id = "myId"
+				componentA = {}
+				componentB = {}
+
+				components = {}
+
+				entityFactories =
+					"myEntity": ( args ) ->
+						entity =
+							id: id
+							components:
+								"componentA": componentA
+								"componentB": componentB
+
+				returnedId = m.Entities.createEntity(
+					entityFactories,
+					components,
+					"myEntity",
+					{} )
+
+				expect( returnedId ).to.equal( id )
 
 		describe "destroyEntity", ->
 			it "should remove an entity from the component containers", ->
@@ -43,7 +66,7 @@ module "EntitiesTest", [ "Entities" ], ( Entities ) ->
 						"a": {}
 						"c": {}
 
-				Entities.destroyEntity( gameState, "a" )
+				m.Entities.destroyEntity( gameState, "a" )
 
 				expectedGameState =
 					"componentA":
