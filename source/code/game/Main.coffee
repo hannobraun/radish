@@ -1,4 +1,4 @@
-module "Game", [ "Images", "Rendering", "Input", "MainLoop", "Logic", "Graphics" ], ( Images, Rendering, Input, MainLoop, Logic, Graphics )->
+module "Main", [ "Images", "Rendering", "Input", "MainLoop", "Logic", "Graphics" ], ( Images, Rendering, Input, MainLoop, Logic, Graphics )->
 	Images.loadImages [ "images/star.png" ], ( rawImages ) ->
 		images = Images.process( rawImages )
 
