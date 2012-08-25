@@ -1,91 +1,144 @@
 module "EventsTest", [ "Events" ], ( m ) ->
 	describe "Events", ->
-		subscribers = null
+		events = null
 
 		beforeEach ->
-			subscribers = m.Events.createSubscribers()
+			events = m.Events.createEvents()
 
 
-		it "should call an event's subscriber, if the event is published", ->
-			eventForSubscriber = null
-			m.Events.subscribe subscribers, "keyDown", [ "enter" ], ( event ) ->
-				eventForSubscriber = event
+		describe "basic behavior", ->
+			it "should call the subscriber of a published event", ->
+				argumentForSubscriber = null
+				m.Events.subscribe events, "keyDown", [ "enter" ], ( argument ) ->
+					argumentForSubscriber = argument
 
-			eventFromPublisher = {}
-			m.Events.publish( subscribers, "keyDown", "enter", eventFromPublisher )
+				argumentFromPublisher = {}
+				m.Events.publish( events, "keyDown", "enter", [ argumentFromPublisher ] )
+				m.Events.execute( events )
 
-			expect( eventForSubscriber ).to.equal( eventFromPublisher )
+				expect( argumentForSubscriber ).to.equal( argumentFromPublisher )
 
-		it "should only call subscribers of the event type", ->
-			eventForSubscriber = null
-			m.Events.subscribe subscribers, "keyDown", [ "enter" ], ( event ) ->
-				eventForSubscriber = event
+			it "should pass an event to all its subscribers", ->
+				argumentForSubscriber = null
+				m.Events.subscribe events, "keyDown", [ "enter" ], ( argument ) ->
+					argumentForSubscriber = argument
 
-			m.Events.publish( subscribers, "keyUp", "enter", {} )
+				eventForOtherSubscriber = null
+				m.Events.subscribe events, "keyDown", [ "enter" ], ( argument ) ->
+					eventForOtherSubscriber = argument
 
-			expect( eventForSubscriber ).to.equal( null )
+				argumentFromPublisher = {}
+				m.Events.publish( events, "keyDown", "enter", [ argumentFromPublisher ] )
+				m.Events.execute( events )
 
-		it "should only call subscribers of the topic", ->
-			eventForSubscriber = null
-			m.Events.subscribe subscribers, "keyDown", [ "enter" ], ( event ) ->
-				eventForSubscriber = event
+				expect( argumentForSubscriber   ).to.equal( argumentFromPublisher )
+				expect( eventForOtherSubscriber ).to.equal( argumentFromPublisher )
 
-			m.Events.publish( subscribers, "keyDown", "space", {} )
+		describe "execution", ->
+			it "should only call subscribers if events are executed", ->
+				subscriberExecuted = false
+				m.Events.subscribe events, "keyDown", [ "enter" ], ->
+					subscriberExecuted = true
 
-			expect( eventForSubscriber ).to.equal( null )
+				m.Events.publish( events, "keyDown", "enter", [] )
 
-		it "should pass an event to multiple subscribers", ->
-			eventForSubscriber = null
-			m.Events.subscribe subscribers, "keyDown", [ "enter" ], ( event ) ->
-				eventForSubscriber = event
+				expect( subscriberExecuted ).to.equal( false )
 
-			eventForOtherSubscriber = null
-			m.Events.subscribe subscribers, "keyDown", [ "enter" ], ( event ) ->
-				eventForOtherSubscriber = event
+			it "should execute published events only once", ->
+				numberOfExecutions = 0
+				m.Events.subscribe events, "keyDown", [ "enter" ], ->
+					numberOfExecutions += 1
 
-			eventFromPublisher = {}
-			m.Events.publish( subscribers, "keyDown", "enter", eventFromPublisher )
+				m.Events.publish( events, "keyDown", "enter", [] )
+				m.Events.execute( events )
+				m.Events.execute( events )
 
-			expect( eventForSubscriber      ).to.equal( eventFromPublisher )
-			expect( eventForOtherSubscriber ).to.equal( eventFromPublisher )
+				expect( numberOfExecutions ).to.equal( 1 )
 
-		it "should allow subscriptions to any event", ->
-			eventForSubscriber = null
-			m.Events.subscribe subscribers, m.Events.anyEvent, [ "enter" ], ( event ) ->
-				eventForSubscriber = event
+			it "should execute events that are added to the queue during execution", ->
+				eventExecuted = false
+				m.Events.subscribe events, "triggeredEvent", [ "a topic" ], ->
+					eventExecuted = true
 
-			eventForOtherSubscriber = null
-			m.Events.subscribe subscribers, m.Events.anyEvent, [ "space" ], ( event ) ->
-				eventForOtherSubscriber = event
+				m.Events.subscribe events, "originalEvent", [ "a topic" ], ->
+					m.Events.publish( events, "triggeredEvent", "a topic", [] )
 
-			eventFromPublisher = {}
-			m.Events.publish( subscribers, "keyDown", "enter", eventFromPublisher )
+				m.Events.publish( events, "originalEvent", [ "a topic" ], [] )
+				m.Events.execute( events )
 
-			expect( eventForSubscriber      ).to.equal( eventFromPublisher )
-			expect( eventForOtherSubscriber ).to.equal( null               )
+				expect( eventExecuted ).to.equal( true )
 
-		it "should allow subscriptions to any topic", ->
-			eventForSubscriber = null
-			m.Events.subscribe subscribers, "keyDown", [ m.Events.anyTopic ], ( event ) ->
-				eventForSubscriber = event
+			it "should execute a published event right away, if calling publishNow", ->
+				subscriberExecuted = false
+				m.Events.subscribe events, "keyDown", [ "enter" ], ->
+					subscriberExecuted = true
 
-			eventForOtherSubscriber = null
-			m.Events.subscribe subscribers, "keyUp", [ m.Events.anyTopic ], ( event ) ->
-				eventForOtherSubscriber = event
+				m.Events.publishAndExecute( events, "keyDown", "enter", [] )
 
-			eventFromPublisher = {}
-			m.Events.publish( subscribers, "keyDown", "enter", eventFromPublisher )
+				expect( subscriberExecuted ).to.equal( true )
 
-			expect( eventForSubscriber      ).to.equal( eventFromPublisher )
-			expect( eventForOtherSubscriber ).to.equal( null               )
+		describe "event types", ->
+			it "should only call subscribers of the specified event type", ->
+				argumentForSubscriber = null
+				m.Events.subscribe events, "keyDown", [ "enter" ], ( argument ) ->
+					argumentForSubscriber = argument
 
-		it "should throw an exception, if anything but an array is passed for topics", ->
-			error = try
-				m.Events.subscribe( subscribers, "keyDown", "enter", ( event ) -> )
-				false
-			catch error
-				true
+				m.Events.publish( events, "keyUp", "enter", [ {} ] )
+				m.Events.execute( events )
 
-			expect( error ).to.equal( true )
+				expect( argumentForSubscriber ).to.equal( null )
+
+			it "should allow subscriptions to any event", ->
+				argumentForSubscriber = null
+				m.Events.subscribe events, m.Events.anyEvent, [ "enter" ], ( argument ) ->
+					argumentForSubscriber = argument
+
+				eventForOtherSubscriber = null
+				m.Events.subscribe events, m.Events.anyEvent, [ "space" ], ( argument ) ->
+					eventForOtherSubscriber = argument
+
+				argumentFromPublisher = {}
+				m.Events.publish( events, "keyDown", "enter", [ argumentFromPublisher ] )
+				m.Events.execute( events )
+
+				expect( argumentForSubscriber      ).to.equal( argumentFromPublisher )
+				expect( eventForOtherSubscriber ).to.equal( null               )
+
+		describe "topics", ->
+			it "should only call subscribers of the specified topic", ->
+				argumentForSubscriber = null
+				m.Events.subscribe events, "keyDown", [ "enter" ], ( argument ) ->
+					argumentForSubscriber = argument
+
+				m.Events.publish( events, "keyDown", "space", [ {} ] )
+				m.Events.execute( events )
+
+				expect( argumentForSubscriber ).to.equal( null )
+
+			it "should allow subscriptions to any topic", ->
+				argumentForSubscriber = null
+				m.Events.subscribe events, "keyDown", [ m.Events.anyTopic ], ( argument ) ->
+					argumentForSubscriber = argument
+
+				eventForOtherSubscriber = null
+				m.Events.subscribe events, "keyUp", [ m.Events.anyTopic ], ( argument ) ->
+					eventForOtherSubscriber = argument
+
+				argumentFromPublisher = {}
+				m.Events.publish( events, "keyDown", "enter", [ argumentFromPublisher ] )
+				m.Events.execute( events )
+
+				expect( argumentForSubscriber      ).to.equal( argumentFromPublisher )
+				expect( eventForOtherSubscriber ).to.equal( null               )
+
+		describe "robustness", ->
+			it "should throw an exception, if anything but an array is passed for topics", ->
+				error = try
+					m.Events.subscribe( events, "keyDown", "enter", ( argument ) -> )
+					false
+				catch error
+					true
+
+				expect( error ).to.equal( true )
 
 load( "EventsTest" )
