@@ -1,4 +1,4 @@
-module "Input", [], ( m ) ->
+module "Input", [ "Events" ], ( m ) ->
 	keyNamesByCode =
 		8  : "backspace"
 		9  : "tab"
@@ -187,15 +187,34 @@ module "Input", [], ( m ) ->
 
 			currentInput
 
-		onKeys: ( keyNames, callback ) ->
-			keysOfInterest = keyNameArrayToKeyCodeSet( keyNames )
+		createInputEvents: ( display ) ->
+			inputEvents = m.Events.createEvents()
 
-			window.addEventListener "keydown", ( keyDownEvent ) ->
-				if keysOfInterest[ keyDownEvent.keyCode ]
-					keyName = keyNamesByCode[ keyDownEvent.keyCode ]
-					callback(
-						keyName,
-						keyDownEvent )
+
+			display.canvas.addEventListener "mousemove", ( mouseMoveEvent ) ->
+				pointerPosition = [ 0, 0 ]
+				updatePointerPosition(
+					pointerPosition,
+					display,
+					mouseMoveEvent )
+
+				m.Events.publishAndExecute( inputEvents, "mousemove", [], [
+					pointerPosition,
+					mouseMoveEvent ] )
+
+			window.addEventListener "click", ( clickEvent ) ->
+				pointerPosition = [ 0, 0 ]
+				updatePointerPosition(
+					pointerPosition,
+					display,
+					clickEvent )
+
+				m.Events.publishAndExecute( inputEvents, "click", [], [
+					pointerPosition,
+					clickEvent ] )
+
+
+			inputEvents
 
 		isKeyDown: ( currentInput, keyName ) ->
 			ensureKeyNameIsValid( keyName )
