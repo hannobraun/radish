@@ -19,6 +19,55 @@ module "Rendering", [], ( m ) ->
 					image.positionOffset[ 0 ],
 					image.positionOffset[ 1 ] )
 				context.drawImage( image.rawImage, 0, 0 )
+
+			"line": ( context, properties ) ->
+				start = properties.start
+				end   = properties.end
+
+				alpha = properties.alpha or 1
+				color = properties.color or "rgb(0,0,0)"
+				width = properties.width or 1
+				cap   = properties.cap   or "butt"
+
+				context.globalAlpha = alpha
+				context.strokeStyle = color
+				context.lineWidth   = width
+				context.lineCap     = cap
+
+				context.beginPath()
+				context.moveTo( start[ 0 ], start[ 1 ] )
+				context.lineTo( end[ 0 ], end[ 1 ] )
+				context.stroke()
+
+			"rectangle": ( context, properties ) ->
+				position = properties.position
+				size     = properties.size
+
+				color = properties.color or "rgb(255,255,255)"
+				fill  = if properties.fill? then properties.fill else true
+
+				if fill
+					context.fillStyle = color
+					context.fillRect(
+						position[ 0 ],
+						position[ 1 ],
+						size[ 0 ],
+						size[ 1 ] )
+				else
+					context.strokeStyle = color
+					context.strokeRect(
+						position[ 0 ],
+						position[ 1 ],
+						size[ 0 ],
+						size[ 1 ] )
+
+		createRenderData: ( drawFunctions, data ) ->
+			renderData = {}
+			
+			for renderableType, drawFunction of drawFunctions
+				renderData[ renderableType ] = data[ renderableType ] or {}
+
+			renderData
 				
 		createDisplay: ->
 			canvas  = document.getElementById( "canvas" )
@@ -58,13 +107,16 @@ module "Rendering", [], ( m ) ->
 			for renderable in renderables
 				context.save()
 
-				resource = renderData[ renderable.type ][ renderable.reference ]
+				resources    = renderData[ renderable.type ]
+				drawFunction = drawFunctions[ renderable.type ]
 
-				drawRenderable = drawFunctions[ renderable.type ]
-				drawRenderable(
+				unless drawFunction?
+					throw "There is no draw function for renderable type \"#{ renderable.type }\"."
+
+				drawFunction(
 					context,
 					renderable.properties,
-					resource,
+					resources[ renderable.reference ],
 					renderable.reference )
 
 				context.restore()
