@@ -2,8 +2,8 @@ module "Main", [ "Images", "Rendering", "Input", "MainLoop", "Step", "Logic", "G
 	m.Images.loadImages [ "images/star.png" ], ( rawImages ) ->
 		images = m.Images.process( rawImages )
 
-		renderData =
-			"image": images
+		renderData = m.Rendering.createRenderData( m.Rendering.drawFunctions, {
+			"image": images } )
 
 		# Some keys have unwanted default behavior on websites, like scrolling.
 		# Fortunately we can tell the Input module to prevent the default
