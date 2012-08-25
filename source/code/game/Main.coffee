@@ -1,4 +1,4 @@
-module "Main", [ "Images", "Rendering", "Input", "MainLoop", "Logic", "Graphics" ], ( m )->
+module "Main", [ "Images", "Rendering", "Input", "MainLoop", "Step", "Logic", "Graphics" ], ( m )->
 	m.Images.loadImages [ "images/star.png" ], ( rawImages ) ->
 		images = m.Images.process( rawImages )
 
@@ -15,6 +15,8 @@ module "Main", [ "Images", "Rendering", "Input", "MainLoop", "Logic", "Graphics"
 			"right arrow"
 			"space" ] )
 
+		stepData = m.Step.createStepData( 1 / 60 )
+
 		display      = m.Rendering.createDisplay()
 		currentInput = m.Input.createCurrentInput( display )
 		gameState    = m.Logic.createGameState()
@@ -23,11 +25,13 @@ module "Main", [ "Images", "Rendering", "Input", "MainLoop", "Logic", "Graphics"
 		m.Logic.initGameState( gameState )
 
 		m.MainLoop.execute ( gameTimeInS, frameTimeInS ) ->
-			m.Logic.updateGameState(
-				gameState,
-				currentInput,
-				gameTimeInS,
-				frameTimeInS )
+			m.Step.step stepData, frameTimeInS, ( totalStepTimeInS, stepTimeInS ) ->
+				m.Logic.updateGameState(
+					gameState,
+					currentInput,
+					totalStepTimeInS,
+					stepTimeInS )
+
 			m.Graphics.updateRenderState(
 				renderState,
 				gameState )
