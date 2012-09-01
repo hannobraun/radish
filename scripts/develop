@@ -1,5 +1,5 @@
 sourcesDirectory=sources
-testsDirectory=test
+testsDirectory=tests
 
 coffee --watch --compile --join output/game.js \
 	$sourcesDirectory/modules \
