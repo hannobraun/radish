@@ -29,6 +29,11 @@ http://path/to/your-game/public
 
 ## Deployment
 
+There are is a deploy script that deploys your game to the gh-pages branch of
+your repository. This is useful if your repository is hosted on
+[GitHub](http://github.com), since it will deploy your game to
+[GitHub Pages](http://pages.github.com).
+
 ### Setup
 
 git remote set-url origin your-repository-url<br />
