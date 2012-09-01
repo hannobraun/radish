@@ -1,4 +1,5 @@
 sourcesDirectory=sources
+testsDirectory=test
 
 coffee --watch --compile --join output/game.js \
 	$sourcesDirectory/modules \
@@ -6,7 +7,7 @@ coffee --watch --compile --join output/game.js \
 coffee --watch --compile --join output/test.js \
 	$sourcesDirectory/modules \
 	$sourcesDirectory/code \
-	test/modules \
-	test/code &
+	$testsDirectory/modules \
+	$testsDirectory/code &
 
 read
