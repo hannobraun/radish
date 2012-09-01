@@ -1,4 +1,4 @@
-DEPLOY_DIRECTORY=/tmp/noop-deploy-$RANDOM
+DEPLOY_DIRECTORY=/tmp/html5-skeleton-deploy-$RANDOM
 
 cp -r --dereference public $DEPLOY_DIRECTORY
 git checkout gh-pages
