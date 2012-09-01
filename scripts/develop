@@ -1,9 +1,9 @@
 coffee --watch --compile --join output/game.js \
-	source/modules \
-	source/code &
+	sources/modules \
+	sources/code &
 coffee --watch --compile --join output/test.js \
-	source/modules \
-	source/code \
+	sources/modules \
+	sources/code \
 	test/modules \
 	test/code &
 
