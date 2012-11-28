@@ -2,13 +2,22 @@
 
 ## About
 
-A skeleton project that helps me to get started quickly with new projects.
+This is a skeleton project that helps me to get started quickly with new
+browser game projects. It uses HTML5 technology (specifically canvas) with
+[CoffeeScript](http://coffescript.org) for the programming language.
 
-A bit too rough for public consumption but useful enough for me. Refinement and
-documentation might happen or maybe not.
+This repository provides some base code (you could call it a framework), as well
+as infrastructure for developing and deploying your game.
+
+Feel free to use this, if you feel that it helps you with your game, although
+all of this might still be a bit too rough for public consumption.
 
 
 ## Get started
+
+To create a game, just clone the repository and start filling in the blanks. If
+any of the base code is not to your liking, feel free to modify it or just
+replace it outright.
 
 Prepare the repository:
 
@@ -16,7 +25,7 @@ Prepare the repository:
 - cd your-game<br />
 - git submodule update --init
 
-Install coffeescript: http://coffeescript.org
+Install CoffeeScript: http://coffeescript.org
 
 
 ## Develop
@@ -46,3 +55,13 @@ Usage:
 other directory but the base directory of your repository). The script infers
 the game's name from the directory it's run from, so if you run from scripts,
 the game will be deployed to a directory called "scripts".
+
+
+## Contribute
+
+browser-game-skeleton is available under the permissive ISC license. See the
+LICENSE file for details.
+
+Feel free to contribute any improvements you make to the base code back to this
+project. Just fork the repository on GitHub, port your changes and start a pull
+request.
