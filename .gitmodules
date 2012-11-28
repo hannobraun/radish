@@ -4,3 +4,6 @@
 [submodule "vendor/mocha"]
 	path = vendor/mocha
 	url = git://github.com/visionmedia/mocha.git
+[submodule "vendor/lodash"]
+	path = vendor/lodash
+	url = git://github.com/bestiejs/lodash.git
