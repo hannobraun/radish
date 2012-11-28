@@ -10,24 +10,28 @@ documentation might happen or maybe not.
 
 ## Get started
 
-git clone git://github.com/hbraun/game-skeleton.git your-game<br />
-cd your-game<br />
-git submodule update --init
+Prepare the repository:
+
+- git clone https://github.com/hannobraun/browser-game-skeleton.git your-game<br />
+- cd your-game<br />
+- git submodule update --init
+
+Install coffeescript: http://coffeescript.org
 
 
-## Development
+## Develop
 
-Start compilation on the command-line:<br />
-./scripts/develop
+Start continuous compilation on the command-line:<br />
+./scripts/compile
 
 Run tests in the browser:<br />
-http://path/to/your-game/test
+http://path/to/your-game/tests
 
 Run the game in the browser:<br />
 http://path/to/your-game/public
 
 
-## Deployment
+## Deploy
 
 There are is a deploy script that deploys your game to the gh-pages branch of
 your repository. This is useful if your repository is hosted on
