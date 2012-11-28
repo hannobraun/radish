@@ -33,20 +33,16 @@ http://path/to/your-game/public
 
 ## Deploy
 
-There are is a deploy script that deploys your game to the gh-pages branch of
-your repository. This is useful if your repository is hosted on
-[GitHub](http://github.com), since it will deploy your game to
-[GitHub Pages](http://pages.github.com).
+There's a script that deploys your game to any Git repository of your choosing.
+This is especially useful if said repository is hosted on GitHub, since you host
+your game using [GitHub Pages](http://pages.github.com) then.
 
-### Setup
+Usage:
 
-git remote set-url origin your-repository-url<br />
-git push -u origin master<br />
+1. Edit the configuration in scripts/deploy to fit your needs.
+1. Run the script from the base directory of your repository: ./scripts/deploy
 
-Additional setup steps are necessary but not documented yet.
-
-
-### Deploying a new version
-
-./scripts/deploy<br />
-git push<br />
+*Attention*: Don't run the deploy script from the scripts directory (or any
+other directory but the base directory of your repository). The script infers
+the game's name from the directory it's run from, so if you run from scripts,
+the game will be deployed to a directory called "scripts".
