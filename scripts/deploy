@@ -1,10 +1,30 @@
-DEPLOY_DIRECTORY=/tmp/html5-skeleton-deploy-$RANDOM
+# This configures determines where your game is deployed. Please adapt to your
+# needs.
+
+DEPLOY_REPOSITORY=https://github.com/hannobraun/prototypes.hannobraun.com.git
+DEPLOY_BRANCH=gh-pages
+
+
+# Configuration ends here. Still, feel free to edit below this point if you know
+# what you're doing or don't care about the consequences.
+
+GAME_NAME=${PWD##*/}
+DEPLOY_DIRECTORY=/tmp/$GAME_NAME-deploy-directory-$RANDOM
+DEPLOY_REPOSITORY_LOCAL=/tmp/$GAME_NAME-deploy-repository
 
 cp -r --dereference public $DEPLOY_DIRECTORY
-git checkout gh-pages
-cp -r $DEPLOY_DIRECTORY/* .
 
-git add `ls $DEPLOY_DIRECTORY`
-git commit -m "Deployment to gh-pages by deploy script."
+if [ ! -d "$DEPLOY_REPOSITORY_LOCAL" ]; then
+    git clone $DEPLOY_REPOSITORY $DEPLOY_REPOSITORY_LOCAL
+fi
 
-git checkout master
+cd $DEPLOY_REPOSITORY_LOCAL
+git pull origin $DEPLOY_BRANCH:$DEPLOY_BRANCH
+git checkout $DEPLOY_BRANCH
+
+rm -rf $GAME_NAME
+mv $DEPLOY_DIRECTORY $GAME_NAME
+
+git add .
+git commit -m "Automatic deployment by $GAME_NAME deploy script."
+git push origin $DEPLOY_BRANCH:$DEPLOY_BRANCH
