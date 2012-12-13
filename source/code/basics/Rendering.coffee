@@ -7,6 +7,7 @@ module "Rendering", [], ( m ) ->
 
 				position    = properties.position    or [ 0, 0 ]
 				orientation = properties.orientation or 0
+				scale       = properties.scale       or [ 1, 1 ]
 				alpha       = properties.alpha       or 1
 
 				context.globalAlpha = alpha
@@ -15,10 +16,41 @@ module "Rendering", [], ( m ) ->
 					position[ 0 ],
 					position[ 1 ] )
 				context.rotate( orientation + image.orientationOffset )
+				context.scale(
+					scale[ 0 ],
+					scale[ 1 ] )
 				context.translate(
 					image.positionOffset[ 0 ],
 					image.positionOffset[ 1 ] )
 				context.drawImage( image.rawImage, 0, 0 )
+
+			"text": ( context, properties ) ->
+				text         = properties.text
+
+				position     = properties.position    or [ 0, 0 ]
+				orientation  = properties.orientation or 0
+				color        = properties.color       or "rgb(255,105,180)"
+				font         = properties.font        or "10pt Arial"
+				alpha        = properties.alpha       or 1
+				textAlign    = properties.align       or "center"
+				textBaseline = properties.baseline    or "alphabetic"
+				fill         = properties.fill        or true
+
+				context.font         = font
+				context.globalAlpha  = alpha
+				context.textAlign    = textAlign
+				context.textBaseline = textBaseline
+
+				context.translate(
+					position[ 0 ],
+					position[ 1 ] )
+				context.rotate( orientation )
+				if fill
+					context.fillStyle = color
+					context.fillText( text, 0, 0 )
+				else
+					context.strokeStyle = color
+					context.strokeText( text, 0, 0 )
 
 			"line": ( context, properties ) ->
 				start = properties.start
@@ -44,7 +76,7 @@ module "Rendering", [], ( m ) ->
 				size     = properties.size
 
 				color = properties.color or "rgb(255,255,255)"
-				fill  = if properties.fill? then properties.fill else true
+				fill  = properties.fill  or true
 
 				if fill
 					context.fillStyle = color
