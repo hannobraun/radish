@@ -1,4 +1,4 @@
-module "Logic", [ "Input", "Entities", "Vec2", "Stars" ], ( m ) ->
+module "Logic", [ "Input", "Entities", "Vec2", "Stars", "UpdateStarPositions" ], ( m ) ->
 	# Each type of entity has its own factory function. These can be defined
 	# here directly, though it's recommended to define them in a separate module
 	# for each entity and just reference them here.
@@ -42,11 +42,8 @@ module "Logic", [ "Input", "Entities", "Vec2", "Stars" ], ( m ) ->
 				speed : -1 } )
 
 		updateGameState: ( gameState, currentInput, gameTimeInS, frameTimeInS ) ->
-			for entityId, position of gameState.components.positions
-				movement = gameState.components.movements[ entityId ]
-
-				angle = gameTimeInS * movement.speed
-				position[ 0 ] = movement.radius * Math.cos( angle )
-				position[ 1 ] = movement.radius * Math.sin( angle )
-
-				m.Vec2.add( position, currentInput.pointerPosition )
+			m.UpdateStarPositions(
+				currentInput,
+				gameTimeInS,
+				gameState.components.positions,
+				gameState.components.movements )
