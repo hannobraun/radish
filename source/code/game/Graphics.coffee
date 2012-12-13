@@ -1,8 +1,9 @@
 module "Graphics", [ "Rendering", "Vec2" ], ( m ) ->
 	module =
-		createRenderState: ->
+		createRenderState: ( displaySize ) ->
 			renderState =
 				renderables: []
+				displaySize: displaySize
 
 		updateRenderState: ( renderState, gameState ) ->
 			renderState.renderables.length = 0
