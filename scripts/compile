@@ -1,4 +1,4 @@
-SOURCES_DIRECTORY=sources
+SOURCES_DIRECTORY=source
 TESTS_DIRECTORY=tests
 
 coffee --watch --compile --join output/game.js \
