@@ -1,22 +1,6 @@
-module "Logic", [ "Input", "Entities", "Vec2" ], ( m ) ->
-	nextEntityId = 0
-
+module "Logic", [ "Input", "Entities", "Vec2", "Stars" ], ( m ) ->
 	entityFactories =
-		"star": ( args ) ->
-			movement =
-				center: args.center
-				radius: args.radius
-				speed : args.speed
-
-			id = nextEntityId
-			nextEntityId += 1
-
-			entity =
-				id: id
-				components:
-					"positions": [ 0, 0 ]
-					"movements": movement
-					"imageIds" : "star.png"
+		"star": m.Stars.createEntity
 
 	# There are functions for creating and destroying entities in the Entities
 	# module. We will mostly use shortcuts however. They are declared here and
