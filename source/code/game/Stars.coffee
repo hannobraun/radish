@@ -4,7 +4,6 @@ module "Stars", [], ( m ) ->
 	module =
 		createEntity: ( args ) ->
 			movement =
-				center: args.center
 				radius: args.radius
 				speed : args.speed
 

@@ -33,11 +33,9 @@ module "Logic", [ "Input", "Entities", "Vec2", "Stars", "UpdateStarPositions" ],
 					entityId )
 
 			createEntity( "star", {
-				center: [ 0, 0 ]
 				radius: 50,
 				speed : 2 } )
 			createEntity( "star", {
-				center: [ 0, 0 ]
 				radius: 100,
 				speed : -1 } )
 
