@@ -13,8 +13,8 @@ out!
 
 Radish uses HTML5 technology (specifically canvas) with
 [CoffeeScript](http://coffeescript.org) for the programming language. It's ready
-right now, if you need it, but be careful: Radish is still pretty young and not
-everything you would expect might be there yet.
+right now, if you need it, but be careful: It's still very rough around the
+edges not everything you would expect might be there yet.
 
 
 ## Get started
