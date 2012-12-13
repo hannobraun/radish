@@ -12,7 +12,7 @@ module "Stars", [], ( m ) ->
 			nextEntityId += 1
 
 			entity =
-				id: id
+				id: "star #{ id }"
 				components:
 					"positions": [ 0, 0 ]
 					"movements": movement
