@@ -1,5 +1,8 @@
-module "Main", [ "Images", "Rendering", "Input", "MainLoop", "Step", "Logic", "Graphics" ], ( m )->
-	m.Images.loadImages [ "images/star.png" ], ( rawImages ) ->
+module "Main", [ "Images", "Rendering", "Input", "MainLoop", "Step", "Logic", "Graphics" ], ( m ) ->
+	imagePaths = [
+		"images/star.png" ]
+
+	m.Images.loadImages imagePaths, ( rawImages ) ->
 		images = m.Images.process( rawImages )
 
 		renderData = m.Rendering.createRenderData( m.Rendering.drawFunctions, {
