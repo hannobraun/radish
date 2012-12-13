@@ -47,8 +47,8 @@ http://path/to/your-game/public
 ## Deploy
 
 There's a script that deploys your game to any Git repository of your choosing.
-This is especially useful if said repository is hosted on GitHub, since you host
-your game on [GitHub Pages](http://pages.github.com) then.
+This is especially useful if said repository is hosted on GitHub, since you can
+host your game on [GitHub Pages](http://pages.github.com) then.
 
 Usage:
 
