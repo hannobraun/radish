@@ -2,7 +2,7 @@ module "Logic", [ "Input", "Entities", "Vec2" ], ( m ) ->
 	nextEntityId = 0
 
 	entityFactories =
-		"myEntity": ( args ) ->
+		"star": ( args ) ->
 			movement =
 				center: args.center
 				radius: args.radius
@@ -45,11 +45,11 @@ module "Logic", [ "Input", "Entities", "Vec2" ], ( m ) ->
 					gameState.components,
 					entityId )
 
-			createEntity( "myEntity", {
+			createEntity( "star", {
 				center: [ 0, 0 ]
 				radius: 50,
 				speed : 2 } )
-			createEntity( "myEntity", {
+			createEntity( "star", {
 				center: [ 0, 0 ]
 				radius: 100,
 				speed : -1 } )
