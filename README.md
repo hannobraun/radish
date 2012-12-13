@@ -1,28 +1,33 @@
-# Browser Game Skeleton
+# Radish
 
 ## About
 
-This is a skeleton project that helps me to get started quickly with new
-browser game projects. It uses HTML5 technology (specifically canvas) with
-[CoffeeScript](http://coffeescript.org) for the programming language. The
-repository provides some base code (you could call it a framework), as well as
-infrastructure for developing and deploying your game.
+Radish is a skeleton for browser games. It contains code and tools that help you
+get started quickly with your new game.
 
-Feel free to use this, if you feel that it helps you with your game, although
-all of this might still be a bit too rough for public consumption.
+In that sense it's kind of like a framework, except that it's not. A framework
+is someone else's code that you use from the outside. The Radish code lives in
+your own repository, right next to your game's code. You wish that one feature
+worked slightly different? Change it! Something's getting in your way? Throw it
+out!
+
+Radish uses HTML5 technology (specifically canvas) with
+[CoffeeScript](http://coffeescript.org) for the programming language. It's ready
+right now, if you need it, but be careful: Radish is still pretty young and not
+everything you would expect might be there yet.
 
 
 ## Get started
 
-To create a game, just clone the repository and start filling in the blanks. If
+To create a game, just clone this repository and start filling in the blanks. If
 any of the base code is not to your liking, feel free to modify or just outright
 replace it.
 
 Prepare the repository:
 
-- git clone https://github.com/hannobraun/browser-game-skeleton.git your-game<br />
-- cd your-game<br />
-- git submodule update --init
+* git clone https://github.com/hannobraun/browser-game-skeleton.git your-game
+* cd your-game
+* git submodule update --init
 
 Install CoffeeScript: http://coffeescript.org
 
