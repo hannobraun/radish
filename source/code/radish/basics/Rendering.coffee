@@ -101,9 +101,15 @@ module "Rendering", [], ( m ) ->
 
 			renderData
 				
-		createDisplay: ->
-			canvas  = document.getElementById( "canvas" )
+		createDisplay: ( width, height ) ->
+			canvas  = document.createElement( "canvas" )
 			context = canvas.getContext( "2d" )
+
+			canvas.width  = width
+			canvas.height = height
+
+			gameContainer = document.getElementById( "game" )
+			gameContainer.appendChild( canvas )
 
 			# Setting up the coordinate system for the context. The goal here:
 			# - (0,0) should be at the center of the canvas.
