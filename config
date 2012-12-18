@@ -1,0 +1,6 @@
+# This file contains configuration that is used by the scripts in the scripts
+# directory. Please adapt to your needs.
+
+# Determines where your game is deployed.
+DEPLOY_REPOSITORY=https://github.com/hannobraun/prototypes.hannobraun.com.git
+DEPLOY_BRANCH=gh-pages

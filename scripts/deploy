@@ -1,12 +1,4 @@
-# This configures determines where your game is deployed. Please adapt to your
-# needs.
-
-DEPLOY_REPOSITORY=https://github.com/hannobraun/prototypes.hannobraun.com.git
-DEPLOY_BRANCH=gh-pages
-
-
-# Configuration ends here. Still, feel free to edit below this point if you know
-# what you're doing or don't care about the consequences.
+source config
 
 GAME_NAME=${PWD##*/}
 DEPLOY_DIRECTORY=/tmp/$GAME_NAME-deploy-directory-$RANDOM
