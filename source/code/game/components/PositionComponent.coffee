@@ -1,4 +1,4 @@
-module "Positions", [], ( m ) ->
+module "PositionComponent", [], ( m ) ->
 	module =
 		createComponent: ->
 			[ 0, 0 ]
