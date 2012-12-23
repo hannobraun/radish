@@ -1,9 +1,9 @@
-module "Stars", [ "PositionComponent", "Movements" ], ( m ) ->
+module "Stars", [ "PositionComponent", "MovementComponent" ], ( m ) ->
 	nextEntityId = 0
 
 	module =
 		createEntity: ( args ) ->
-			movement = m.Movements.createComponent()
+			movement = m.MovementComponent.createComponent()
 			movement.radius = args.radius
 			movement.speed  = args.speed
 

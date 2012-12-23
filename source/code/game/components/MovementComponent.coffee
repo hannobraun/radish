@@ -1,4 +1,4 @@
-module "Movements", [], ( m ) ->
+module "MovementComponent", [], ( m ) ->
 	module =
 		createComponent: ->
 			movement =
