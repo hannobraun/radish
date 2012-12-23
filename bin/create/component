@@ -21,7 +21,6 @@ var template = fs.readFileSync(
 var view = {
 	name: componentName
 }
-
 var output = mustache.render( template, view )
 
 var fileName = 'source/code/game/components/' +componentName+ 'Component.coffee'
