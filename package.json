@@ -1,0 +1,8 @@
+{
+	"name"   : "radish",
+	"version": "0.0.1",
+
+	"dependencies": {
+		"mustache": "0.7.1"
+	}
+}
