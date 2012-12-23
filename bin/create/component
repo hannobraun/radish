@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+
+
+var fs = require( 'fs' )
+
+var mustache = require( 'mustache' )
+
+
+var componentName = process.argv[ 2 ]
+
+var template = fs.readFileSync(
+	'source/templates/ComponentModule.coffee.mustache',
+	'utf8' )
+
+var view = {
+	name: componentName
+}
+
+var output = mustache.render( template, view )
+
+fs.writeFileSync(
+	'source/code/game/components/' +componentName+ 'Component.coffee',
+	output )
