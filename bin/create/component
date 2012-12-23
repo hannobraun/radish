@@ -6,6 +6,10 @@ var fs = require( 'fs' )
 var mustache = require( 'mustache' )
 
 
+if ( process.argv.length !== 3 ) {
+	console.log( 'Usage: ./bin/create/component ComponentName' )
+	process.exit( 1 )
+}
 var componentName = process.argv[ 2 ]
 
 var template = fs.readFileSync(
