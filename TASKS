@@ -1,0 +1,4 @@
+* All scripts should search the current directory and, if necessary, its parent
+  directories for radish.json. The script should be executed from the directory
+  where the file is found. It should display an error message, if the file
+  cannot be found.
