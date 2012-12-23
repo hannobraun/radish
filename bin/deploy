@@ -4,6 +4,11 @@ GAME_NAME=${PWD##*/}
 DEPLOY_DIRECTORY=/tmp/$GAME_NAME-deploy-directory-$RANDOM
 DEPLOY_REPOSITORY_LOCAL=/tmp/$GAME_NAME-deploy-repository
 
+echo "This script will deploy $GAME_NAME to branch $DEPLOY_BRANCH of repository"
+echo "$DEPLOY_REPOSITORY."
+echo "Please press ENTER to confirm or CTRL-C to abort."
+read
+
 cp -r --dereference public $DEPLOY_DIRECTORY
 
 if [ ! -d "$DEPLOY_REPOSITORY_LOCAL" ]; then
