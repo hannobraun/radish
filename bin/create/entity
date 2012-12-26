@@ -11,4 +11,4 @@ require( '../../output/tools.js' )
 var entityName = argv._
 var force      = argv.force
 
-load( "Create" ).renderTemplate( "entity", entityName, force )
+load( 'Create' ).renderTemplate( 'entity', entityName, force )
