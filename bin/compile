@@ -5,6 +5,10 @@ coffee --watch --compile --join output/game.js \
 	$SOURCES_DIRECTORY/modules \
 	$SOURCES_DIRECTORY/code &
 
+coffee --watch --compile --join output/tools.js \
+	$SOURCES_DIRECTORY/modules \
+	$SOURCES_DIRECTORY/tools &
+
 coffee --watch --compile --join output/tests.js \
 	$SOURCES_DIRECTORY/modules \
 	$SOURCES_DIRECTORY/code \

@@ -1,33 +1,14 @@
 #!/usr/bin/env node
 
-
-var fs = require( 'fs' )
-
 var argv = require( 'optimist' )
 	.usage( 'Usage: $0 ComponentName' )
 	.demand( [ '_' ] )
 	.alias( 'f', 'force' )
 	.argv
 
-var mustache = require( 'mustache' )
-
+require( '../../output/tools.js' )
 
 var componentName = argv._
+var force         = argv.force
 
-var template = fs.readFileSync(
-	'source/templates/ComponentModule.coffee.mustache',
-	'utf8' )
-
-var view = {
-	name: componentName
-}
-var output = mustache.render( template, view )
-
-var fileName = 'source/code/game/components/' +componentName+ 'Component.coffee'
-if ( fs.existsSync( fileName ) && !argv.force ) {
-	console.log( 'File ' +fileName+ ' already exists.' )
-	console.log( 'Delete file or re-run with -f.' )
-	process.exit( 1 )
-}
-
-fs.writeFileSync( fileName, output )
+load( "Create" ).renderComponentTemplate( componentName, force )

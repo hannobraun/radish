@@ -1,25 +1,30 @@
-window.def = ( moduleName, dependencyNames, moduleFactory ) ->
-	window.modules = {} unless window.modules?
+g = if global?
+	global
+else
+	window
 
-	unless window.modules[ moduleName ]?
-		window.modules[ moduleName ] =
+g.def = ( moduleName, dependencyNames, moduleFactory ) ->
+	g.modules = {} unless g.modules?
+
+	unless g.modules[ moduleName ]?
+		g.modules[ moduleName ] =
 			name           : moduleName
 			dependencyNames: dependencyNames
 			factory        : moduleFactory
 	else
 		throw "Module " +moduleName+ " is already defined."
 
-window.load = ( moduleName, loadedModules ) ->
-	unless window.modules?
+g.load = ( moduleName, loadedModules ) ->
+	unless g.modules?
 		throw "No modules have been defined."
 
-	unless window.modules[ moduleName ]?
+	unless g.modules[ moduleName ]?
 		throw "A module called " +moduleName+ " does not exist."
 
 	loadedModules = {} unless loadedModules?
 
 	unless loadedModules[ moduleName ]?
-		module = window.modules[ moduleName ]
+		module = g.modules[ moduleName ]
 
 		dependencies = {}
 		for dependencyName in module.dependencyNames
