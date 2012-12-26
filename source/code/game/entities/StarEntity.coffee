@@ -1,4 +1,4 @@
-def "Stars", [ "PositionComponent", "MovementComponent" ], ( m ) ->
+def 'StarEntity', [ 'PositionComponent', 'MovementComponent' ], ( m ) ->
 	nextEntityId = 0
 
 	module =
@@ -11,8 +11,8 @@ def "Stars", [ "PositionComponent", "MovementComponent" ], ( m ) ->
 			nextEntityId += 1
 
 			entity =
-				id: "star #{ id }"
+				id: 'Star ' +id
 				components:
-					"positions": m.PositionComponent.createComponent()
-					"movements": movement
-					"imageIds" : "star.png"
+					'positions': m.PositionComponent.createComponent()
+					'movements': movement
+					'imageIds' : 'star.png'
