@@ -1,0 +1,12 @@
+def '{{name}}Entity', [], ( m ) ->
+	nextEntityId = 0
+
+	module =
+		createEntity: ( args ) ->
+			id = nextEntityId
+			nextEntityId += 1
+
+			entity =
+				id: 'star ' +id
+				components:
+					"exampleComponents": {}

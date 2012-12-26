@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+var argv = require( 'optimist' )
+	.usage( 'Usage: $0 EntityName' )
+	.demand( [ '_' ] )
+	.alias( 'f', 'force' )
+	.argv
+
+require( '../../output/tools.js' )
+
+var entityName = argv._
+var force      = argv.force
+
+load( "Create" ).renderTemplate( "entity", entityName, force )

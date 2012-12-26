@@ -2,18 +2,30 @@ def 'Create', [], ( m ) ->
 	fs       = require( 'fs' )
 	mustache = require( 'mustache' )
 
+	templateName =
+		'component': 'ComponentModule'
+		'entity'   : 'EntityModule'
+	directory =
+		'component': 'components'
+		'entity'   : 'entities'
+	moduleSuffix =
+		'component': 'Component'
+		'entity'   : 'Entity'
+
 	module =
-		renderComponentTemplate: ( componentName, force ) ->
+		renderTemplate: ( type, name, force ) ->
+			moduleName = name + moduleSuffix[ type ]
+
 			template = fs.readFileSync(
-				'source/templates/ComponentModule.coffee.mustache',
+				'source/templates/' +templateName[ type ]+ '.coffee.mustache',
 				'utf8' )
 
 			view =
-				name: componentName
+				name: name
 
 			output = mustache.render( template, view )
 
-			fileName = 'source/code/game/components/' +componentName+ 'Component.coffee'
+			fileName = 'source/code/game/' +directory[ type ]+ '/' +moduleName+ '.coffee'
 			if fs.existsSync( fileName ) && !force
 				console.log( 'File ' +fileName+ ' already exists.' )
 				console.log( 'Delete file or re-run with -f.' )
