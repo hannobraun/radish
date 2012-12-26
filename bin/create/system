@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+var argv = require( 'optimist' )
+	.usage( 'Usage: $0 SystemName' )
+	.demand( [ '_' ] )
+	.alias( 'f', 'force' )
+	.argv
+
+require( '../../output/tools.js' )
+
+var systemName = argv._
+var force      = argv.force
+
+load( 'Create' ).renderTemplate( 'system', systemName, force )

@@ -5,12 +5,15 @@ def 'Create', [], ( m ) ->
 	templateName =
 		'component': 'ComponentModule'
 		'entity'   : 'EntityModule'
+		'system'   : 'SystemModule'
 	directory =
 		'component': 'components'
 		'entity'   : 'entities'
+		'system'   : 'systems'
 	moduleSuffix =
 		'component': 'Component'
 		'entity'   : 'Entity'
+		'system'   : 'System'
 
 	module =
 		renderTemplate: ( type, name, force ) ->
