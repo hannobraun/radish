@@ -11,4 +11,4 @@ require( '../../output/tools.js' )
 var componentName = argv._
 var force         = argv.force
 
-load( "Create" ).renderTemplate( "component", componentName, force )
+load( 'Create' ).renderTemplate( 'component', componentName, force )
