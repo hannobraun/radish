@@ -1,4 +1,4 @@
-module "Images", [], ( m ) ->
+def "Images", [], ( m ) ->
 	module =
 		loadImages: ( imagePaths, onLoad ) ->
 			images = {}

@@ -1,4 +1,4 @@
-module "EntitiesTest", [ "Entities" ], ( m ) ->
+def "EntitiesTest", [ "Entities" ], ( m ) ->
 	describe "Entities", ->
 		describe "createEntity", ->
 			it "should pass the creation arguments to the entity factory", ->

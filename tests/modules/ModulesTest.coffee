@@ -4,7 +4,7 @@ describe "Modules", ->
 	
 	it "should define a simple module without dependencies", ->
 		moduleLoaded = false
-		module "Module", [], ( m ) ->
+		def "Module", [], ( m ) ->
 			moduleLoaded = true
 
 		load( "Module" )
@@ -14,10 +14,10 @@ describe "Modules", ->
 	it "should pass a module's dependency into a module", ->
 		dependencyModule = ""
 
-		module "Dependency", [], ( m ) ->
+		def "Dependency", [], ( m ) ->
 			"dependency"
 
-		module "Module", [ "Dependency" ], ( m ) ->
+		def "Module", [ "Dependency" ], ( m ) ->
 			dependencyModule = m.Dependency
 
 		load( "Module" )
@@ -27,24 +27,24 @@ describe "Modules", ->
 	it "should load every module only once", ->
 		timesLoaded = 0
 
-		module "Dependency", [], ( m ) ->
+		def "Dependency", [], ( m ) ->
 			timesLoaded += 1
 
-		module "ModuleA", [ "Dependency" ], ( m ) ->
+		def "ModuleA", [ "Dependency" ], ( m ) ->
 
-		module "ModuleB", [ "Dependency" ], ( m ) ->
+		def "ModuleB", [ "Dependency" ], ( m ) ->
 
-		module "MainModule", [ "ModuleA", "ModuleB" ], ( m ) ->
+		def "MainModule", [ "ModuleA", "ModuleB" ], ( m ) ->
 
 		load( "MainModule" )
 
 		expect( timesLoaded ).to.equal( 1 )
 
 	it "should throw an error, if two modules are defined with the same id", ->
-		module "Module", [], ( m ) ->
+		def "Module", [], ( m ) ->
 
 		caughtError = try
-			module "Module", [], ( m ) ->
+			def "Module", [], ( m ) ->
 			false
 		catch error
 			true
@@ -52,7 +52,7 @@ describe "Modules", ->
 		expect( caughtError ).to.equal( true )
 
 	it "should throw a nice error message, if a a module is loaded that doesn't exist", ->
-		module "Module", [], ( m ) ->
+		def "Module", [], ( m ) ->
 
 		error = try
 			load( "NonExistingModule" )
@@ -63,7 +63,7 @@ describe "Modules", ->
 		expect( error ).to.contain( "NonExistingModule" )
 
 	it "should throw a nice error message, if a dependency does not exist", ->
-		module "ExistingModule", [ "NonExistingModule" ], ( m ) ->
+		def "ExistingModule", [ "NonExistingModule" ], ( m ) ->
 
 		error = try
 			load( "ExistingModule" )

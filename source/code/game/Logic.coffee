@@ -1,4 +1,4 @@
-module "Logic", [ "Input", "Entities", "Vec2", "Stars", "UpdateStarPositions" ], ( m ) ->
+def "Logic", [ "Input", "Entities", "Vec2", "Stars", "UpdateStarPositions" ], ( m ) ->
 	# Each type of entity has its own factory function. These can be defined
 	# here directly, though it's recommended to define them in a separate module
 	# for each entity and just reference them here.

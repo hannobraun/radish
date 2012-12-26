@@ -1,4 +1,4 @@
-module "ImagesTest", [ "Images" ], ( m ) ->
+def "ImagesTest", [ "Images" ], ( m ) ->
 	imageDataFrom = ( image ) ->
 		canvas = document.createElement( "canvas" )
 		canvas.width  = image.width

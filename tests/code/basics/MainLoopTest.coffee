@@ -1,4 +1,4 @@
-module "MainLoopTest", [ "MainLoop" ], ( m ) ->
+def "MainLoopTest", [ "MainLoop" ], ( m ) ->
 	describe "MainLoop", ->
 		it "should execute the given function while callNextFrame keeps re-scheduling the function", ->
 			numberOfSchedulings = 2

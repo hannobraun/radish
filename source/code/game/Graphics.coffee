@@ -1,4 +1,4 @@
-module "Graphics", [ "Rendering", "Vec2" ], ( m ) ->
+def "Graphics", [ "Rendering", "Vec2" ], ( m ) ->
 	module =
 		createRenderState: ( displaySize ) ->
 			renderState =

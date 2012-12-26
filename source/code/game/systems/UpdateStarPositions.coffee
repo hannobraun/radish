@@ -1,4 +1,4 @@
-module "UpdateStarPositions", [ "Vec2" ], ( m ) ->
+def "UpdateStarPositions", [ "Vec2" ], ( m ) ->
 	( currentInput, gameTimeInS, positions, movements ) ->
 		for entityId, position of positions
 			movement = movements[ entityId ]

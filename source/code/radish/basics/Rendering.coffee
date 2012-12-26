@@ -1,4 +1,4 @@
-module "Rendering", [], ( m ) ->
+def "Rendering", [], ( m ) ->
 	module =
 		drawFunctions:
 			"image": ( context, properties, image, imageId ) ->

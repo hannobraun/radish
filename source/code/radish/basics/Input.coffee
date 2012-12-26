@@ -1,4 +1,4 @@
-module "Input", [ "Events" ], ( m ) ->
+def "Input", [ "Events" ], ( m ) ->
 	keyNamesByCode =
 		8  : "backspace"
 		9  : "tab"

@@ -1,4 +1,4 @@
-module "Step", [], ( m ) ->
+def "Step", [], ( m ) ->
 	module =
 		createStepData: ( stepTime ) ->
 			{

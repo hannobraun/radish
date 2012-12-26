@@ -1,4 +1,4 @@
-module "Mat3x3Test", [ "Mat3x3" ], ( m ) ->
+def "Mat3x3Test", [ "Mat3x3" ], ( m ) ->
 	describe "Mat3x3", ->
 		it "should multiply two matrices", ->
 			m1 = [

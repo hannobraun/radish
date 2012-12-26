@@ -1,4 +1,4 @@
-module "Transform2dTest", [ "Transform2d" ], ( m ) ->
+def "Transform2dTest", [ "Transform2d" ], ( m ) ->
 	describe "Transform2d", ->
 		it "should create a transformation matrix for translation", ->
 			t = m.Transform2d.translationMatrix( [ 3, 4 ] )

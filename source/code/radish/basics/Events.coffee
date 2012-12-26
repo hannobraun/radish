@@ -1,4 +1,4 @@
-module "Events", [], ( m ) ->
+def "Events", [], ( m ) ->
 	module =
 		anyEvent: "any event"
 		anyTopic: "any topic"

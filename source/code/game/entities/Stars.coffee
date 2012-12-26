@@ -1,4 +1,4 @@
-module "Stars", [ "PositionComponent", "MovementComponent" ], ( m ) ->
+def "Stars", [ "PositionComponent", "MovementComponent" ], ( m ) ->
 	nextEntityId = 0
 
 	module =

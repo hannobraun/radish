@@ -1,4 +1,4 @@
-module "Main", [ "Images", "Rendering", "Input", "MainLoop", "Step", "Logic", "Graphics" ], ( m ) ->
+def "Main", [ "Images", "Rendering", "Input", "MainLoop", "Step", "Logic", "Graphics" ], ( m ) ->
 	imagePaths = [
 		"images/star.png" ]
 

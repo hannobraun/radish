@@ -1,4 +1,4 @@
-module "MainLoop", [], ( m ) ->
+def "MainLoop", [], ( m ) ->
 	maxFrameTimeInMs = 1000 / 30
 
 	defaultCallNextFrame =

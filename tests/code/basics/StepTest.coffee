@@ -1,4 +1,4 @@
-module "StepTest", [ "Step" ], ( m ) ->
+def "StepTest", [ "Step" ], ( m ) ->
 	describe "Step", ->
 		it "should step, if the frame time is large enough", ->
 			stepTime = 20

@@ -1,4 +1,4 @@
-module "Mat3x3", [], ( m ) ->
+def "Mat3x3", [], ( m ) ->
 	module =
 		multiply: ( m1, m2 ) ->
 			m00 = m1[ 0 ][ 0 ]

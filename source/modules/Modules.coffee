@@ -1,4 +1,4 @@
-window.module = ( moduleName, dependencyNames, moduleFactory ) ->
+window.def = ( moduleName, dependencyNames, moduleFactory ) ->
 	window.modules = {} unless window.modules?
 
 	unless window.modules[ moduleName ]?

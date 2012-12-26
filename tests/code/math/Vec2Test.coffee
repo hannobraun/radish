@@ -1,4 +1,4 @@
-module "Vec2Test", [ "Vec2" ], ( m ) ->
+def "Vec2Test", [ "Vec2" ], ( m ) ->
 	describe "Vec2", ->
 		it "should copy an existing vector", ->
 			v1 = [ 0, 0 ]

@@ -1,4 +1,4 @@
-module "Vec2", [], ( m ) ->
+def "Vec2", [], ( m ) ->
 	module =
 		copy: ( v ) ->
 			[ v[ 0 ], v[ 1 ] ]

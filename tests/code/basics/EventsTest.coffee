@@ -1,4 +1,4 @@
-module "EventsTest", [ "Events" ], ( m ) ->
+def "EventsTest", [ "Events" ], ( m ) ->
 	describe "Events", ->
 		events = null
 
