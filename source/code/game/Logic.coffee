@@ -1,4 +1,4 @@
-def "Logic", [ "Input", "Entities", "Vec2", "StarEntity", "UpdateStarPositions" ], ( m ) ->
+def "Logic", [ "Input", "Entities", "Vec2", "StarEntity", "UpdateStarPositionsSystem" ], ( m ) ->
 	# Each type of entity has its own factory function. These can be defined
 	# here directly, though it's recommended to define them in a separate module
 	# for each entity and just reference them here.
@@ -40,7 +40,7 @@ def "Logic", [ "Input", "Entities", "Vec2", "StarEntity", "UpdateStarPositions" 
 				speed : -1 } )
 
 		updateGameState: ( gameState, currentInput, gameTimeInS, frameTimeInS ) ->
-			m.UpdateStarPositions(
+			m.UpdateStarPositionsSystem(
 				currentInput,
 				gameTimeInS,
 				gameState.components.positions,
