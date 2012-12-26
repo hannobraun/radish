@@ -12,14 +12,14 @@ g.def = ( moduleName, dependencyNames, moduleFactory ) ->
 			dependencyNames: dependencyNames
 			factory        : moduleFactory
 	else
-		throw "Module " +moduleName+ " is already defined."
+		throw 'Module "' +moduleName+ '" is already defined.'
 
 g.load = ( moduleName, loadedModules ) ->
 	unless g.modules?
-		throw "No modules have been defined."
+		throw 'No modules have been defined.'
 
 	unless g.modules[ moduleName ]?
-		throw "A module called " +moduleName+ " does not exist."
+		throw 'A module called "' +moduleName+ '" does not exist.'
 
 	loadedModules = {} unless loadedModules?
 
@@ -30,8 +30,8 @@ g.load = ( moduleName, loadedModules ) ->
 		for dependencyName in module.dependencyNames
 			unless modules[ dependencyName ]?
 				throw
-					"A module called \"#{ dependencyName }\" (defined as a " +
-					"dependency in \"#{ moduleName }\") does not exist."
+					'A module called "' +dependencyName+ '" (defined as a ' +
+					'dependency in "' +moduleName+ '") does not exist.'
 			
 			dependencies[ dependencyName ] =
 				load( dependencyName, loadedModules )
