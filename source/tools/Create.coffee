@@ -1,6 +1,5 @@
 def 'Create', [ "RenderTemplate" ], ( m ) ->
 	fs       = require( 'fs' )
-	mustache = require( 'mustache' )
 
 	templateName =
 		'component': 'ComponentModule'
