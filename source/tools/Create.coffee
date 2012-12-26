@@ -21,7 +21,8 @@ def 'Create', [], ( m ) ->
 				'utf8' )
 
 			view =
-				name: name
+				name      : name
+				moduleName: moduleName
 
 			output = mustache.render( template, view )
 
