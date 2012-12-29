@@ -1,4 +1,4 @@
-def 'GenerateAggregates', [ 'RenderTemplate', 'ToolUtils' ], ( m ) ->
+def 'GenerateAggregates', [ 'RenderTemplate' ], ( m ) ->
 	fs = require( 'fs' )
 
 	directories =
