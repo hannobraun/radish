@@ -3,25 +3,25 @@ def 'GenerateAggregates', [ 'RenderTemplate' ], ( m ) ->
 
 	directories =
 		"components": "source/code/game/components"
-	templates =
+	templateFiles =
 		"components": "source/templates/Components.coffee.mustache"
-	modules =
+	moduleFiles =
 		"components": "output/generated/Components.coffee"
 
 	module =
-		generate: () ->
+		generateAggregate: () ->
 			type = "components"
 
 			modules = []
 			findModules( directories[ type ], modules )
-			dependencyString = m.ToolUtils.buildDependencyString( modules )
+			dependencyString = buildDependencyString( modules )
 
 			view =
 				componentModules: dependencyString
 
 			m.RenderTemplate(
-				templates[ type ],
-				modules[ type ],
+				templateFiles[ type ],
+				moduleFiles[ type ],
 				view )
 
 	findModules = ( directory, modules ) ->

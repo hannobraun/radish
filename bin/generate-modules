@@ -4,4 +4,4 @@ require( '../output/tools.js' )
 
 
 load( 'GenerateImagePaths' ).generateImagePaths()
-load( 'GenerateAggregates' ).generate()
+load( 'GenerateAggregates' ).generateAggregate()
