@@ -4,3 +4,6 @@
   cannot be found.
 * The compile and generate-modules commands should be integrated into a
   continuous build system.
+* Once there is an integrated, continous build system, run it in a process that
+  also serves the game in development mode. This makes it possible to output
+  status messages (e.g. compilation errors) in the browser.
