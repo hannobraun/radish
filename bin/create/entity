@@ -8,7 +8,7 @@ var argv = require( 'optimist' )
 
 require( '../../output/tools.js' )
 
-var entityName = argv._
+var entityName = argv._[ 0 ]
 var force      = argv.force
 
 load( 'Create' ).renderTemplate( 'entity', entityName, force )

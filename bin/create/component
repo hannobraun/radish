@@ -8,7 +8,7 @@ var argv = require( 'optimist' )
 
 require( '../../output/tools.js' )
 
-var componentName = argv._
+var componentName = argv._[ 0 ]
 var force         = argv.force
 
 load( 'Create' ).renderTemplate( 'component', componentName, force )
