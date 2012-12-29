@@ -1,23 +1,10 @@
-def 'GenerateComponents', [ 'RenderTemplate' ], ( m ) ->
+def 'GenerateComponents', [ 'RenderTemplate', 'ToolUtils' ], ( m ) ->
 	fs = require( 'fs' )
-
-	findModules = ( directory, modules ) ->
-		files = fs.readdirSync( directory )
-
-		for file in files
-			path = directory+ '/' +file
-
-			stats = fs.statSync( path )
-			if stats.isDirectory()
-				findModules( path, modules )
-			else
-				module = file.substring( 0, file.lastIndexOf( '.' ) )
-				modules.push( module )
 
 	module =
 		generate: () ->
 			modules = []
-			findModules( 'source/code/game/components', modules )
+			m.ToolUtils.findModules( 'source/code/game/components', modules )
 
 			componentModules = '[ '
 			for module in modules
