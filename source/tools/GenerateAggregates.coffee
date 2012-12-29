@@ -1,4 +1,4 @@
-def 'GenerateComponents', [ 'RenderTemplate', 'ToolUtils' ], ( m ) ->
+def 'GenerateAggregates', [ 'RenderTemplate', 'ToolUtils' ], ( m ) ->
 	fs = require( 'fs' )
 
 	module =
