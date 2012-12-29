@@ -1,9 +1,9 @@
-def 'StarEntity', [ 'PositionComponent', 'MovementComponent' ], ( m ) ->
+def 'StarEntity', [ 'Components' ], ( m ) ->
 	nextEntityId = 0
 
 	module =
 		createEntity: ( args ) ->
-			movement = m.MovementComponent.createComponent()
+			movement = m.Components.create( 'movement' )
 			movement.radius = args.radius
 			movement.speed  = args.speed
 
@@ -13,6 +13,6 @@ def 'StarEntity', [ 'PositionComponent', 'MovementComponent' ], ( m ) ->
 			entity =
 				id: 'Star ' +id
 				components:
-					'positions': m.PositionComponent.createComponent()
+					'positions': m.Components.create( 'position' )
 					'movements': movement
 					'imageIds' : 'star.png'
