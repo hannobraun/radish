@@ -8,5 +8,7 @@ def 'RenderTemplate', [], ( m ) ->
 		template = fs.readFileSync( templateFileName, 'utf8' )
 		output   = mustache.render( template, view )
 
-		fs.mkdirSync( directory )
+		unless fs.existsSync( directory )
+			fs.mkdirSync( directory )
+
 		fs.writeFileSync( fileName, output )
