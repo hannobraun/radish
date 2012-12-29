@@ -2,3 +2,5 @@
   directories for radish.json. The script should be executed from the directory
   where the file is found. It should display an error message, if the file
   cannot be found.
+* The compile and generate-modules commands should be integrated into a
+  continuous build system.
