@@ -1,17 +1,17 @@
-SOURCES_DIRECTORY=source
+SOURCE_DIRECTORY=source
 TESTS_DIRECTORY=tests
 
 coffee --watch --compile --join output/game.js \
-	$SOURCES_DIRECTORY/modules \
-	$SOURCES_DIRECTORY/code &
+	$SOURCE_DIRECTORY/modules \
+	$SOURCE_DIRECTORY/code &
 
 coffee --watch --compile --join output/tools.js \
-	$SOURCES_DIRECTORY/modules \
-	$SOURCES_DIRECTORY/tools &
+	$SOURCE_DIRECTORY/modules \
+	$SOURCE_DIRECTORY/tools &
 
 coffee --watch --compile --join output/tests.js \
-	$SOURCES_DIRECTORY/modules \
-	$SOURCES_DIRECTORY/code \
+	$SOURCE_DIRECTORY/modules \
+	$SOURCE_DIRECTORY/code \
 	$TESTS_DIRECTORY/modules \
 	$TESTS_DIRECTORY/code &
 
