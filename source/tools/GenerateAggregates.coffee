@@ -9,9 +9,7 @@ def 'GenerateAggregates', [ 'RenderTemplate' ], ( m ) ->
 		"components": "output/generated/Components.coffee"
 
 	module =
-		generateAggregate: () ->
-			type = "components"
-
+		generateAggregate: ( type ) ->
 			modules = []
 			findModules( directories[ type ], modules )
 			dependencyString = buildDependencyString( modules )
