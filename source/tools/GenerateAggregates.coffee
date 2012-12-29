@@ -15,7 +15,7 @@ def 'GenerateAggregates', [ 'RenderTemplate' ], ( m ) ->
 			dependencyString = buildDependencyString( modules )
 
 			view =
-				componentModules: dependencyString
+				"modules": dependencyString
 
 			m.RenderTemplate(
 				templateFiles[ type ],
