@@ -3,6 +3,10 @@ def 'RenderTemplate', [], ( m ) ->
 	mustache = require( 'mustache' )
 
 	( templateFileName, fileName, view ) ->
+		directory = fileName.substring( 0, fileName.lastIndexOf( '/' ) )
+
 		template = fs.readFileSync( templateFileName, 'utf8' )
 		output   = mustache.render( template, view )
+
+		fs.mkdirSync( directory )
 		fs.writeFileSync( fileName, output )
