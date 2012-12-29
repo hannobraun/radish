@@ -1,0 +1,11 @@
+def 'Components', {{{componentModules}}}, ( m ) ->
+	componentModuleNames = {{{componentModules}}}
+
+	componentFactories = {}
+	for moduleName in componentModuleNames
+		module = m[ moduleName ]
+		componentFactories[ module.componentName ] = module.createComponent
+
+	module =
+		create: ( component, args ) ->
+			componentFactories[ component ]( args )
