@@ -14,3 +14,13 @@ def "ToolUtils", [], ( m ) ->
 				else
 					module = file.substring( 0, file.lastIndexOf( '.' ) )
 					modules.push( module )
+
+		buildDependencyString: ( dependencies ) ->
+			dependencyString = '[ '
+
+			for module in dependencies
+				dependencyString += "'" +module+ "', "
+			dependencyString =
+				dependencyString.substring( 0, dependencyString.length - 2 )
+
+			dependencyString += ' ]'

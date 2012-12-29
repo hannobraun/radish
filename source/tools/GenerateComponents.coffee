@@ -5,16 +5,10 @@ def 'GenerateComponents', [ 'RenderTemplate', 'ToolUtils' ], ( m ) ->
 		generate: () ->
 			modules = []
 			m.ToolUtils.findModules( 'source/code/game/components', modules )
-
-			componentModules = '[ '
-			for module in modules
-				componentModules += "'" +module+ "', "
-			componentModules =
-				componentModules.substring( 0, componentModules.length - 2 )
-			componentModules += ' ]'
+			dependencyString = m.ToolUtils.buildDependencyString( modules )
 
 			view =
-				componentModules: componentModules
+				componentModules: dependencyString
 
 			m.RenderTemplate(
 				'source/templates/Components.coffee.mustache',
