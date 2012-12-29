@@ -7,3 +7,9 @@
 * Once there is an integrated, continous build system, run it in a process that
   also serves the game in development mode. This makes it possible to output
   status messages (e.g. compilation errors) in the browser.
+* Create funtion that generates component, entity or system modules. The
+  template should not contain any more logic than a call to that function. This
+  way, the template doesn't need to be updated, if the specifics of the modules
+  change. Component module (as an example) could look like this:
+  def.component "componentName", [], ->
+      ...
