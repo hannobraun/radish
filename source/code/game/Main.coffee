@@ -1,4 +1,4 @@
-def "Main", [ "ImagePaths", "Images", "Rendering", "Input", "MainLoop", "Step", "Logic", "Graphics" ], ( m ) ->
+def 'Main', [ 'ImagePaths', 'Images', 'Rendering', 'Input', 'MainLoop', 'Step', 'Logic', 'Graphics' ], ( m ) ->
 	m.Images.loadImages m.ImagePaths, ( rawImages ) ->
 		images = m.Images.process( rawImages )
 
@@ -9,11 +9,11 @@ def "Main", [ "ImagePaths", "Images", "Rendering", "Input", "MainLoop", "Step", 
 		# Fortunately we can tell the Input module to prevent the default
 		# behavior of some keys.
 		m.Input.preventDefaultFor( [
-			"up arrow"
-			"down arrow"
-			"left arrow"
-			"right arrow"
-			"space" ] )
+			'up arrow'
+			'down arrow'
+			'left arrow'
+			'right arrow'
+			'space' ] )
 
 		stepData = m.Step.createStepData( 1 / 60 )
 
