@@ -1,18 +1,27 @@
 def 'GenerateAggregates', [ 'RenderTemplate', 'ToolUtils' ], ( m ) ->
 	fs = require( 'fs' )
 
+	directories =
+		"components": "source/code/game/components"
+	templates =
+		"components": "source/templates/Components.coffee.mustache"
+	modules =
+		"components": "output/generated/Components.coffee"
+
 	module =
 		generate: () ->
+			type = "components"
+
 			modules = []
-			findModules( 'source/code/game/components', modules )
+			findModules( directories[ type ], modules )
 			dependencyString = m.ToolUtils.buildDependencyString( modules )
 
 			view =
 				componentModules: dependencyString
 
 			m.RenderTemplate(
-				'source/templates/Components.coffee.mustache',
-				'output/generated/Components.coffee',
+				templates[ type ],
+				modules[ type ],
 				view )
 
 	findModules = ( directory, modules ) ->
