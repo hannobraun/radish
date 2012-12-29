@@ -4,3 +4,4 @@ require( '../output/tools.js' )
 
 
 load( 'GenerateImagePaths' ).generateImagePaths()
+load( 'GenerateComponents' ).generate()
