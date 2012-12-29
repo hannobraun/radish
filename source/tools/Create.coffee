@@ -16,7 +16,11 @@ def 'Create', [ "RenderTemplate" ], ( m ) ->
 
 	module =
 		renderTemplate: ( type, name, force ) ->
-			moduleName = name + moduleSuffix[ type ]
+			moduleName =
+				name[ 0 ].toUpperCase() +
+				name.substring( 1 ) +
+				moduleSuffix[ type ]
+
 			templateFileName =
 				'source/templates/' +templateName[ type ]+ '.coffee.mustache'
 			fileName =
