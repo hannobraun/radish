@@ -13,3 +13,4 @@
   change. Component module (as an example) could look like this:
   def.component "componentName", [], ->
       ...
+* Rename output/generated to generated-code.
