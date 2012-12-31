@@ -1,4 +1,4 @@
-def "Logic", [ "Input", "EntityUtil", "Vec2", "Entities", "UpdateStarPositionsSystem" ], ( m ) ->
+def "Logic", [ "Input", "EntityUtil", "Entities", "UpdateStarPositionsSystem" ], ( m ) ->
 	# There are functions for creating and destroying entities in the EntityUtil
 	# module. We will mostly use shortcuts however. They are declared here and
 	# defined further down in initGameState.
