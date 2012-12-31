@@ -1,0 +1,11 @@
+def "Systems", {{{modules}}}, ( m ) ->
+	moduleNames = {{{modules}}}
+
+	systems = {}
+	for moduleName in moduleNames
+		module = m[ moduleName ]
+		systems[ module.systemName ] = module.system
+
+	module =
+		execute: ( system, argsArray ) ->
+			systems[ system ].apply( undefined, argsArray )

@@ -4,12 +4,15 @@ def "GenerateAggregates", [ "RenderTemplate" ], ( m ) ->
 	directories =
 		"components": "source/code/game/components"
 		"entities"  : "source/code/game/entities"
+		"systems"   : "source/code/game/systems"
 	templateFiles =
 		"components": "source/templates/aggregates/Components.coffee.mustache"
 		"entities"  : "source/templates/aggregates/Entities.coffee.mustache"
+		"systems"   : "source/templates/aggregates/Systems.coffee.mustache"
 	moduleFiles =
 		"components": "output/generated/Components.coffee"
 		"entities"  : "output/generated/Entities.coffee"
+		"systems"   : "output/generated/Systems.coffee"
 
 	module =
 		generateAggregate: ( type ) ->
