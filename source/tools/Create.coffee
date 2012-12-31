@@ -5,10 +5,6 @@ def "Create", [ "Paths", "RenderTemplate" ], ( m ) ->
 		"component": "ComponentModule"
 		"entity"   : "EntityModule"
 		"system"   : "SystemModule"
-	directory =
-		"component": "components"
-		"entity"   : "entities"
-		"system"   : "systems"
 	moduleSuffix =
 		"component": "Component"
 		"entity"   : "Entity"
@@ -24,7 +20,7 @@ def "Create", [ "Paths", "RenderTemplate" ], ( m ) ->
 			templateFileName =
 				m.Paths[ "templates" ]+ "game-modules/" +templateName[ type ]+ ".coffee.mustache"
 			fileName =
-				m.Paths[ "game-code" ] + directory[ type ]+ "/" +moduleName+ ".coffee"
+				m.Paths[ "game-code" ] + m.Paths[ "game-directories" ][ type ]+ "/" +moduleName+ ".coffee"
 			view =
 				name      : name
 				moduleName: moduleName
