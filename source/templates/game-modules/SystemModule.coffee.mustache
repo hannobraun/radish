@@ -1,4 +1,7 @@
-def '{{moduleName}}', [], ( m ) ->
-	( currentInput, gameTimeInS, exampleEntities ) ->
-		for entityId, exampleEntity of exampleEntities
-			# ...
+def "{{moduleName}}", [], ( m ) ->
+	module =
+		systemName: "{{name}}"
+
+		system: ( currentInput, gameTimeInS, exampleEntities ) ->
+			for entityId, exampleEntity of exampleEntities
+				# ...
