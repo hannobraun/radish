@@ -2,14 +2,11 @@
 
 ## About
 
-Radish is a skeleton for browser games. It contains code and tools that help you
-get started quickly with your new game.
-
-In that sense it's kind of like a framework, except that it's not. A framework
-is someone else's code that you use from the outside. The Radish code lives in
-your own repository, right next to your game's code. You wish that one feature
-worked slightly different? Change it! Something's getting in your way? Throw it
-out!
+Radish is an atypical framework for browser games. Contrary to most other
+frameworks, Radish isn't someone elses code that you just use from the outside.
+Radish's code lives in your game's repository, right next to your own code. You
+wish that one of Radish's features worked slightly different? Change it!
+Something's getting in your way? Throw it out!
 
 Radish uses HTML5 technology (specifically canvas) with
 [CoffeeScript](http://coffeescript.org) for the programming language. It's ready
@@ -25,7 +22,7 @@ replace it.
 
 Prepare the repository:
 
-* git clone https://github.com/hannobraun/browser-game-skeleton.git your-game
+* git clone https://github.com/hannobraun/radish.git your-game
 * cd your-game
 * git submodule update --init
 
@@ -34,13 +31,17 @@ Install CoffeeScript: http://coffeescript.org
 
 ## Develop
 
-Start continuous compilation on the command-line:<br />
-./scripts/compile
+Start continuous compilation on the command-line:  
+./bin/compile
 
-Run tests in the browser:<br />
+Generate some code, that helps you with development (this is required from time
+to time):  
+./bin/generate-modules
+
+Run tests in the browser:  
 http://path/to/your-game/tests
 
-Run the game in the browser:<br />
+Run the game in the browser:  
 http://path/to/your-game/public
 
 
@@ -52,13 +53,13 @@ host your game on [GitHub Pages](http://pages.github.com) then.
 
 Usage:
 
-1. Edit the configuration section in scripts/deploy to fit your needs.
-1. Run the script from the base directory of your repository: ./scripts/deploy
+1. Edit the project configuration in "config" to fit your needs.
+1. Run the deploy script from the base directory of your repository: ./bin/deploy
 
-*Attention*: Don't run the deploy script from the scripts directory (or any
+*Attention*: Don't run the deploy script from the bin directory (or any
 other directory but the base directory of your repository). The script infers
 the game's name from the directory it's run from, so if you, for example, run
-from scripts, the game will be deployed to a directory called "scripts".
+from bin, the game will be deployed to a directory called "bin".
 
 
 ## Contribute
