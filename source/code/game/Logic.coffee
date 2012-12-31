@@ -1,9 +1,9 @@
-def "Logic", [ "Input", "EntityUtil", "Vec2", "StarEntity", "UpdateStarPositionsSystem" ], ( m ) ->
+def "Logic", [ "Input", "EntityUtil", "Vec2", "Entities", "UpdateStarPositionsSystem" ], ( m ) ->
 	# Each type of entity has its own factory function. These can be defined
 	# here directly, though it's recommended to define them in a separate module
 	# for each entity and just reference them here.
 	entityFactories =
-		"star": m.StarEntity.createEntity
+		"star": ( args ) -> m.Entities.create( "star", args )
 
 	# There are functions for creating and destroying entities in the Entities
 	# module. We will mostly use shortcuts however. They are declared here and
