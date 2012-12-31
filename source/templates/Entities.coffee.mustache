@@ -1,0 +1,11 @@
+def "Entities", {{{modules}}}, ( m ) ->
+	entityModuleNames = {{{modules}}}
+
+	entityFactories = {}
+	for moduleName in entityModuleNames
+		module = m[ moduleName ]
+		entityFactories[ module.entityName ] = module.createEntity
+
+	module =
+		create: ( type, args ) ->
+			entityFactories[ type ]( args )
