@@ -14,3 +14,5 @@
   def.component "componentName", [], ->
       ...
 * Rename output/generated to generated-code.
+* Move entity id generation into the framework. Entity factories should just
+  return a map of components.
