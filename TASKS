@@ -1,8 +1,5 @@
 Easy:
 
-* Rename output/generated to generated-code.
-* Fix directory layout in tests directory. It should mirror the layout in the
-  code directory.
 * Replace current EntityUtil module with EntitySet. It has the following
   functions:
   - create: Creates an empty set of entities. This replaces the current manual
