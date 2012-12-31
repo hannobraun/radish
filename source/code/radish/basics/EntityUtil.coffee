@@ -1,13 +1,7 @@
 def "EntityUtil", [], ( m ) ->
 	module =
-		createEntity: ( factories, components, type, args ) ->
-			factory = factories[ type ]
-
-			unless factory?
-				throw "Entity type \"#{ type }\" is not known."
-
-
-			entity = factory( args )
+		createEntity: ( entities, components, type, args ) ->
+			entity = entities.create( type, args )
 			for componentName, component of entity.components
 				unless components[ componentName ]?
 					components[ componentName ] = {}

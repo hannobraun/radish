@@ -5,11 +5,11 @@ def "EntityUtilTest", [ "EntityUtil" ], ( m ) ->
 				args         = { a: "a", b: "b" }
 				receivedArgs = undefined
 
-				entityFactories =
-					"myEntity": ( args ) ->
+				entities =
+					create: ( type, args ) ->
 						receivedArgs = args
 
-				m.EntityUtil.createEntity( entityFactories, {}, "myEntity", args )
+				m.EntityUtil.createEntity( entities, {}, "myEntity", args )
 
 				expect( receivedArgs ).to.eql( args )
 
@@ -20,15 +20,15 @@ def "EntityUtilTest", [ "EntityUtil" ], ( m ) ->
 
 				components = {}
 
-				entityFactories =
-					"myEntity": ( args ) ->
+				entities =
+					create: ( type, args ) ->
 						entity =
 							id: id
 							components:
 								"componentA": componentA
 								"componentB": componentB
 
-				m.EntityUtil.createEntity( entityFactories, components, "myEntity", {} )
+				m.EntityUtil.createEntity( entities, components, "myEntity", {} )
 
 				expect( components[ "componentA" ][ id ] ).to.be( componentA )
 				expect( components[ "componentB" ][ id ] ).to.be( componentB )
@@ -40,8 +40,8 @@ def "EntityUtilTest", [ "EntityUtil" ], ( m ) ->
 
 				components = {}
 
-				entityFactories =
-					"myEntity": ( args ) ->
+				entities =
+					create: ( type, args ) ->
 						entity =
 							id: id
 							components:
@@ -49,7 +49,7 @@ def "EntityUtilTest", [ "EntityUtil" ], ( m ) ->
 								"componentB": componentB
 
 				returnedId = m.EntityUtil.createEntity(
-					entityFactories,
+					entities,
 					components,
 					"myEntity",
 					{} )
