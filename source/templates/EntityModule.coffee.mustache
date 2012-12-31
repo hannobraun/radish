@@ -2,6 +2,8 @@ def '{{moduleName}}', [], ( m ) ->
 	nextEntityId = 0
 
 	module =
+		entityName: "{{name}}"
+
 		createEntity: ( args ) ->
 			id = nextEntityId
 			nextEntityId += 1
