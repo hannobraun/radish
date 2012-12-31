@@ -5,8 +5,8 @@ def "GenerateAggregates", [ "RenderTemplate" ], ( m ) ->
 		"components": "source/code/game/components"
 		"entities"  : "source/code/game/entities"
 	templateFiles =
-		"components": "source/templates/Components.coffee.mustache"
-		"entities"  : "source/templates/Entities.coffee.mustache"
+		"components": "source/templates/aggregates/Components.coffee.mustache"
+		"entities"  : "source/templates/aggregates/Entities.coffee.mustache"
 	moduleFiles =
 		"components": "output/generated/Components.coffee"
 		"entities"  : "output/generated/Entities.coffee"
