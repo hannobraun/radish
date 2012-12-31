@@ -1,4 +1,4 @@
-def "GenerateImagePaths", [ "RenderTemplate" ], ( m ) ->
+def "GenerateImagePaths", [ "Paths", "RenderTemplate" ], ( m ) ->
 	fs = require( "fs" )
 
 	module =
@@ -13,6 +13,6 @@ def "GenerateImagePaths", [ "RenderTemplate" ], ( m ) ->
 
 
 			m.RenderTemplate(
-				"source/templates/ImagePaths.coffee.mustache",
+				m.Paths[ "templates" ]+ "ImagePaths.coffee.mustache",
 				"output/generated/ImagePaths.coffee",
 				view )
