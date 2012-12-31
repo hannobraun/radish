@@ -5,17 +5,10 @@ def "Create", [ "Paths", "RenderTemplate" ], ( m ) ->
 		"component": "ComponentModule"
 		"entity"   : "EntityModule"
 		"system"   : "SystemModule"
-	moduleSuffix =
-		"component": "Component"
-		"entity"   : "Entity"
-		"system"   : "System"
 
 	module =
 		renderTemplate: ( type, name, force ) ->
-			moduleName =
-				name[ 0 ].toUpperCase() +
-				name.substring( 1 ) +
-				moduleSuffix[ type ]
+			moduleName = m.Paths.moduleName( type, name )
 
 			templateFileName =
 				m.Paths[ "templates" ]+ "game-modules/" +templateName[ type ]+ ".coffee.mustache"
