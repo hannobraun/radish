@@ -16,3 +16,7 @@
 * Rename output/generated to generated-code.
 * Move entity id generation into the framework. Entity factories should just
   return a map of components.
+* Create some kind of global entry point that enables developers to perform
+  debugging actions in a running game from the browsers JavaScript console.
+  Use cases:
+  - Creating an entity.
