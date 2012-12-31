@@ -2,6 +2,26 @@
 	"name"   : "radish",
 	"version": "0.0.1",
 
+	"description": "Radish is an atypical framework for browser games.",
+	"keywords"   : [ "radish", "game", "framework", "browser", "HTML5" ],
+	"homepage"   : "https://github.com/hannobraun/radish",
+
+	"bugs": {
+		"url"  : "https://github.com/hannobraun/radish/issues",
+		"email": "mail@hannobraun.com"
+	},
+
+	"author": {
+		"name" : "Hanno Braun",
+		"email": "mail@hannobraun.com",
+		"url"  : "http://hannobraun.com"
+	},
+
+	"repository": {
+		"type": "git",
+		"url" : "https://github.com/hannobraun/radish.git"
+	},
+
 	"dependencies": {
 		"mustache": "0.7.1",
 		"optimist": "0.3.5"
