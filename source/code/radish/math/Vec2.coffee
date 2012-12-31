@@ -1,6 +1,6 @@
 def "Vec2", [], ( m ) ->
 	module =
-		copy: ( v ) ->
+		clone: ( v ) ->
 			[ v[ 0 ], v[ 1 ] ]
 
 		overwrite: ( v1, v2 ) ->

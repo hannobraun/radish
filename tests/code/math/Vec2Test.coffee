@@ -2,7 +2,7 @@ def "Vec2Test", [ "Vec2" ], ( m ) ->
 	describe "Vec2", ->
 		it "should copy an existing vector", ->
 			v1 = [ 0, 0 ]
-			v2 = m.Vec2.copy( v1 )
+			v2 = m.Vec2.clone( v1 )
 			v1[ 0 ] = 1
 
 			expect( v2 ).to.eql( [ 0, 0 ] )
