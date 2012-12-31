@@ -3,9 +3,9 @@ def 'StarEntity', [ 'Components' ], ( m ) ->
 
 	module =
 		createEntity: ( args ) ->
-			movement = m.Components.create( 'movement' )
-			movement.radius = args.radius
-			movement.speed  = args.speed
+			movement = m.Components.create( 'movement', {
+				radius: args.radius
+				speed : args.speed } )
 
 			id = nextEntityId
 			nextEntityId += 1

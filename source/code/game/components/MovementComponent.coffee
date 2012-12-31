@@ -2,7 +2,7 @@ def "MovementComponent", [], ( m ) ->
 	module =
 		componentName: "movement"
 
-		createComponent: ->
+		createComponent: ( args ) ->
 			movement =
-				radius: 100
-				speed : 1
+				radius: args.radius or 100
+				speed : args.speed  or 1
