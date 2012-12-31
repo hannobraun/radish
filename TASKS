@@ -20,3 +20,5 @@
   debugging actions in a running game from the browsers JavaScript console.
   Use cases:
   - Creating an entity.
+* Fix directory layout in tests directory. It should mirror the layout in the
+  code directory.
