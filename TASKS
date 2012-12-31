@@ -48,6 +48,8 @@
     bad idea for a framework to have its dependencies (in the form of
     node_modules) checked in, while it's a good idea for games that are
     deployed.
+  - Haven the README and LICENSE files from Radish in your game repository is
+    confusing.
   The general approach of having the code of the game and framework live side by
   side, as well as having glue code for framework functionality in the game
   code, is very beneficial, however, and should be kept. A solution could look
