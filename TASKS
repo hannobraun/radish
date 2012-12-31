@@ -22,3 +22,19 @@
   - Creating an entity.
 * Fix directory layout in tests directory. It should mirror the layout in the
   code directory.
+* Replace current EntityUtil module with EntitySet. It has the following
+  functions:
+  - create: Creates an empty set of entities. This replaces the current manual
+            creation of gameState.components.
+  - add: Adds an entity to the set. The entity is a data structure as returned
+         by an entity factory. Generates an id for the entity and returns it.
+  - remove: Removes the entity with the given id from the set. Returns the
+            entity object. This entity object resembles those returned by an
+            entity factory. Thus, the entity can be added to another set.
+  This module would improve the current state of things in the following ways:
+  - Entity management is handled by this module and separated from entity
+    creation.
+  - Accessor funtions can be added, that make it easy to pass stuff to systems.
+  - Set operations (union, intersection, ...) can be added, that make it easy to
+    handle the relation between different sets (different levels, scenes,
+    areas).
