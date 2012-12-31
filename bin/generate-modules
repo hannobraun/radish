@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-require( '../output/tools.js' )
+require( "../output/tools.js" )
 
 
-load( 'GenerateImagePaths' ).generateImagePaths()
-load( 'GenerateAggregates' ).generateAggregate( "components" )
+load( "GenerateImagePaths" ).generateImagePaths()
+load( "GenerateAggregates" ).generateAggregate( "components" )
 load( "GenerateAggregates" ).generateAggregate( "entities" )
