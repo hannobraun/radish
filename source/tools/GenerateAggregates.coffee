@@ -1,10 +1,10 @@
 def "GenerateAggregates", [ "RenderTemplate" ], ( m ) ->
 	fs = require( "fs" )
 
-	directories =
-		"components": "source/code/game/components"
-		"entities"  : "source/code/game/entities"
-		"systems"   : "source/code/game/systems"
+	directory =
+		"components": "components"
+		"entities"  : "entities"
+		"systems"   : "systems"
 	templateFiles =
 		"components": "source/templates/aggregates/Components.coffee.mustache"
 		"entities"  : "source/templates/aggregates/Entities.coffee.mustache"
@@ -17,7 +17,9 @@ def "GenerateAggregates", [ "RenderTemplate" ], ( m ) ->
 	module =
 		generateAggregate: ( type ) ->
 			modules = []
-			findModules( directories[ type ], modules )
+			findModules(
+				"source/code/game/" +directory[ type ],
+				modules )
 			dependencyString = buildDependencyString( modules )
 
 			view =
