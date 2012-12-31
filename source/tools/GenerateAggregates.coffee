@@ -27,7 +27,7 @@ def "GenerateAggregates", [ "Paths", "RenderTemplate" ], ( m ) ->
 
 			m.RenderTemplate(
 				m.Paths[ "templates" ]+ "aggregates/" +templateFile[ type ],
-				"output/generated/" +moduleFile[ type ],
+				m.Paths[ "generated-code" ] + moduleFile[ type ],
 				view )
 
 	findModules = ( directory, modules ) ->
