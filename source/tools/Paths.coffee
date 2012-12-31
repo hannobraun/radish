@@ -1,7 +1,7 @@
 def "Paths", [], ( m ) ->
 	modle =
 		"templates"     : "source/templates/"
-		"generated-code": "output/generated/"
+		"generated-code": "output/generated-code/"
 		"game-code"     : "source/code/game/"
 
 		"game-directories":
