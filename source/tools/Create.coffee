@@ -1,4 +1,4 @@
-def "Create", [ "RenderTemplate" ], ( m ) ->
+def "Create", [ "Paths", "RenderTemplate" ], ( m ) ->
 	fs = require( "fs" )
 
 	templateName =
@@ -22,7 +22,7 @@ def "Create", [ "RenderTemplate" ], ( m ) ->
 				moduleSuffix[ type ]
 
 			templateFileName =
-				"source/templates/game-modules/" +templateName[ type ]+ ".coffee.mustache"
+				m.Paths[ "templates" ]+ "game-modules/" +templateName[ type ]+ ".coffee.mustache"
 			fileName =
 				"source/code/game/" +directory[ type ]+ "/" +moduleName+ ".coffee"
 			view =
