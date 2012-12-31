@@ -38,3 +38,28 @@
   - Set operations (union, intersection, ...) can be added, that make it easy to
     handle the relation between different sets (different levels, scenes,
     areas).
+* The current model of having one repository and cloning it to create a game
+  won't hold up, as radish gets more sophisticated:
+  - The current bin directory is only a hack that allows for executing commands
+    with auto-completion. From a user interface and software engineering
+    perspective, a single command that supports auto-completion is preferable.
+    This new command would require another way of installation, especially to
+    support auto-completion of arguments.
+  - This tasks file now contains a substantial amount of content, which is only
+    in the way when included in a game repository. The same might apply for
+    other files.
+  - There are conflicting best practices for repository management. E.g. it's a
+    bad idea for a framework to have its dependencies (in the form of
+    node_modules) checked in, while it's a good idea for games that are
+    deployed.
+  The general approach of having the code of the game and framework live side by
+  side, as well as having glue code for framework functionality in the game
+  code, is very beneficial, however, and should be kept. A solution could look
+  like this:
+  - Radish is published to npm.
+  - To use radish, one installs it globally.
+  - To create a game, one uses "radish create my-game". This creates a git
+    repository, adds the radish code and skeleton game code to it and commits
+    this.
+  - There could be a controlled way to update to newer radish versions using the
+    radish tool.
