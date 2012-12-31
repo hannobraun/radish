@@ -1,18 +1,18 @@
-def 'Create', [ "RenderTemplate" ], ( m ) ->
-	fs       = require( 'fs' )
+def "Create", [ "RenderTemplate" ], ( m ) ->
+	fs = require( "fs" )
 
 	templateName =
-		'component': 'ComponentModule'
-		'entity'   : 'EntityModule'
-		'system'   : 'SystemModule'
+		"component": "ComponentModule"
+		"entity"   : "EntityModule"
+		"system"   : "SystemModule"
 	directory =
-		'component': 'components'
-		'entity'   : 'entities'
-		'system'   : 'systems'
+		"component": "components"
+		"entity"   : "entities"
+		"system"   : "systems"
 	moduleSuffix =
-		'component': 'Component'
-		'entity'   : 'Entity'
-		'system'   : 'System'
+		"component": "Component"
+		"entity"   : "Entity"
+		"system"   : "System"
 
 	module =
 		renderTemplate: ( type, name, force ) ->
@@ -22,16 +22,16 @@ def 'Create', [ "RenderTemplate" ], ( m ) ->
 				moduleSuffix[ type ]
 
 			templateFileName =
-				'source/templates/' +templateName[ type ]+ '.coffee.mustache'
+				"source/templates/" +templateName[ type ]+ ".coffee.mustache"
 			fileName =
-				'source/code/game/' +directory[ type ]+ '/' +moduleName+ '.coffee'
+				"source/code/game/" +directory[ type ]+ "/" +moduleName+ ".coffee"
 			view =
 				name      : name
 				moduleName: moduleName
 
 			if fs.existsSync( fileName ) && !force
-				console.log( 'File ' +fileName+ ' already exists.' )
-				console.log( 'Delete file or re-run with -f.' )
+				console.log( "File " +fileName+ " already exists." )
+				console.log( "Delete file or re-run with -f." )
 				process.exit( 1 )
 
 			m.RenderTemplate( templateFileName, fileName, view )
