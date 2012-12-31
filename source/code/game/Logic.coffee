@@ -34,7 +34,7 @@ def "Logic", [ "Input", "EntityUtil", "Entities", "UpdateStarPositionsSystem" ],
 				speed : -1 } )
 
 		updateGameState: ( gameState, currentInput, gameTimeInS, frameTimeInS ) ->
-			m.UpdateStarPositionsSystem(
+			m.UpdateStarPositionsSystem.system(
 				currentInput,
 				gameTimeInS,
 				gameState.components.positions,

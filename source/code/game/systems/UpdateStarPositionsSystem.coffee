@@ -1,10 +1,13 @@
-def 'UpdateStarPositionsSystem', [ 'Vec2' ], ( m ) ->
-	( currentInput, gameTimeInS, positions, movements ) ->
-		for entityId, position of positions
-			movement = movements[ entityId ]
+def "UpdateStarPositionsSystem", [ "Vec2" ], ( m ) ->
+	module =
+		systemName: "updateStarPositions"
 
-			angle = gameTimeInS * movement.speed
-			position[ 0 ] = movement.radius * Math.cos( angle )
-			position[ 1 ] = movement.radius * Math.sin( angle )
+		system: ( currentInput, gameTimeInS, positions, movements ) ->
+			for entityId, position of positions
+				movement = movements[ entityId ]
 
-			m.Vec2.add( position, currentInput.pointerPosition )
+				angle = gameTimeInS * movement.speed
+				position[ 0 ] = movement.radius * Math.cos( angle )
+				position[ 1 ] = movement.radius * Math.sin( angle )
+
+				m.Vec2.add( position, currentInput.pointerPosition )
