@@ -24,7 +24,7 @@ def "Create", [ "Paths", "RenderTemplate" ], ( m ) ->
 			templateFileName =
 				m.Paths[ "templates" ]+ "game-modules/" +templateName[ type ]+ ".coffee.mustache"
 			fileName =
-				"source/code/game/" +directory[ type ]+ "/" +moduleName+ ".coffee"
+				m.Paths[ "game-code" ] + directory[ type ]+ "/" +moduleName+ ".coffee"
 			view =
 				name      : name
 				moduleName: moduleName
