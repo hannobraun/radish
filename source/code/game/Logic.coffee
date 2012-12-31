@@ -1,4 +1,4 @@
-def "Logic", [ "Input", "Entities", "Vec2", "StarEntity", "UpdateStarPositionsSystem" ], ( m ) ->
+def "Logic", [ "Input", "EntityUtil", "Vec2", "StarEntity", "UpdateStarPositionsSystem" ], ( m ) ->
 	# Each type of entity has its own factory function. These can be defined
 	# here directly, though it's recommended to define them in a separate module
 	# for each entity and just reference them here.
@@ -22,13 +22,13 @@ def "Logic", [ "Input", "Entities", "Vec2", "StarEntity", "UpdateStarPositionsSy
 			# These are the shortcuts we will use for creating and destroying
 			# entities.
 			createEntity = ( type, args ) ->
-				m.Entities.createEntity(
+				m.EntityUtil.createEntity(
 					entityFactories,
 					gameState.components,
 					type,
 					args )
 			destroyEntity = ( entityId ) ->
-				m.Entities.destroyEntity(
+				m.EntityUtil.destroyEntity(
 					gameState.components,
 					entityId )
 

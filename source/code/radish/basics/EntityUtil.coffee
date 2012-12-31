@@ -1,4 +1,4 @@
-def "Entities", [], ( m ) ->
+def "EntityUtil", [], ( m ) ->
 	module =
 		createEntity: ( factories, components, type, args ) ->
 			factory = factories[ type ]

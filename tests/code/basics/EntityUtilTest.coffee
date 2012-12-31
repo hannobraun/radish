@@ -1,5 +1,5 @@
-def "EntitiesTest", [ "Entities" ], ( m ) ->
-	describe "Entities", ->
+def "EntityUtilTest", [ "EntityUtil" ], ( m ) ->
+	describe "EntityUtil", ->
 		describe "createEntity", ->
 			it "should pass the creation arguments to the entity factory", ->
 				args         = { a: "a", b: "b" }
@@ -9,7 +9,7 @@ def "EntitiesTest", [ "Entities" ], ( m ) ->
 					"myEntity": ( args ) ->
 						receivedArgs = args
 
-				m.Entities.createEntity( entityFactories, {}, "myEntity", args )
+				m.EntityUtil.createEntity( entityFactories, {}, "myEntity", args )
 
 				expect( receivedArgs ).to.eql( args )
 
@@ -28,7 +28,7 @@ def "EntitiesTest", [ "Entities" ], ( m ) ->
 								"componentA": componentA
 								"componentB": componentB
 
-				m.Entities.createEntity( entityFactories, components, "myEntity", {} )
+				m.EntityUtil.createEntity( entityFactories, components, "myEntity", {} )
 
 				expect( components[ "componentA" ][ id ] ).to.be( componentA )
 				expect( components[ "componentB" ][ id ] ).to.be( componentB )
@@ -48,7 +48,7 @@ def "EntitiesTest", [ "Entities" ], ( m ) ->
 								"componentA": componentA
 								"componentB": componentB
 
-				returnedId = m.Entities.createEntity(
+				returnedId = m.EntityUtil.createEntity(
 					entityFactories,
 					components,
 					"myEntity",
@@ -66,7 +66,7 @@ def "EntitiesTest", [ "Entities" ], ( m ) ->
 						"a": {}
 						"c": {}
 
-				m.Entities.destroyEntity( gameState, "a" )
+				m.EntityUtil.destroyEntity( gameState, "a" )
 
 				expectedGameState =
 					"componentA":
@@ -75,4 +75,4 @@ def "EntitiesTest", [ "Entities" ], ( m ) ->
 						"c": {}
 				expect( gameState ).to.eql( expectedGameState )
 
-load( "EntitiesTest" )
+load( "EntityUtilTest" )
