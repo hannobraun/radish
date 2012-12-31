@@ -9,10 +9,10 @@ def "GenerateAggregates", [ "RenderTemplate" ], ( m ) ->
 		"components": "Components.coffee.mustache"
 		"entities"  : "Entities.coffee.mustache"
 		"systems"   : "Systems.coffee.mustache"
-	moduleFiles =
-		"components": "output/generated/Components.coffee"
-		"entities"  : "output/generated/Entities.coffee"
-		"systems"   : "output/generated/Systems.coffee"
+	moduleFile =
+		"components": "Components.coffee"
+		"entities"  : "Entities.coffee"
+		"systems"   : "Systems.coffee"
 
 	module =
 		generateAggregate: ( type ) ->
@@ -27,7 +27,7 @@ def "GenerateAggregates", [ "RenderTemplate" ], ( m ) ->
 
 			m.RenderTemplate(
 				"source/templates/aggregates/" +templateFile[ type ],
-				moduleFiles[ type ],
+				"output/generated/" +moduleFile[ type ],
 				view )
 
 	findModules = ( directory, modules ) ->
