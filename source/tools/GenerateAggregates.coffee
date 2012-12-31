@@ -1,4 +1,4 @@
-def "GenerateAggregates", [ "RenderTemplate" ], ( m ) ->
+def "GenerateAggregates", [ "Paths", "RenderTemplate" ], ( m ) ->
 	fs = require( "fs" )
 
 	directory =
@@ -18,7 +18,7 @@ def "GenerateAggregates", [ "RenderTemplate" ], ( m ) ->
 		generateAggregate: ( type ) ->
 			modules = []
 			findModules(
-				"source/code/game/" +directory[ type ],
+				m.Paths[ "game-code" ] + directory[ type ],
 				modules )
 			dependencyString = buildDependencyString( modules )
 
