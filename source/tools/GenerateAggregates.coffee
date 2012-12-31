@@ -5,10 +5,10 @@ def "GenerateAggregates", [ "RenderTemplate" ], ( m ) ->
 		"components": "components"
 		"entities"  : "entities"
 		"systems"   : "systems"
-	templateFiles =
-		"components": "source/templates/aggregates/Components.coffee.mustache"
-		"entities"  : "source/templates/aggregates/Entities.coffee.mustache"
-		"systems"   : "source/templates/aggregates/Systems.coffee.mustache"
+	templateFile =
+		"components": "Components.coffee.mustache"
+		"entities"  : "Entities.coffee.mustache"
+		"systems"   : "Systems.coffee.mustache"
 	moduleFiles =
 		"components": "output/generated/Components.coffee"
 		"entities"  : "output/generated/Entities.coffee"
@@ -26,7 +26,7 @@ def "GenerateAggregates", [ "RenderTemplate" ], ( m ) ->
 				"modules": dependencyString
 
 			m.RenderTemplate(
-				templateFiles[ type ],
+				"source/templates/aggregates/" +templateFile[ type ],
 				moduleFiles[ type ],
 				view )
 
