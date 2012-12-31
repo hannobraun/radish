@@ -26,7 +26,7 @@ def "GenerateAggregates", [ "Paths", "RenderTemplate" ], ( m ) ->
 				"modules": dependencyString
 
 			m.RenderTemplate(
-				"source/templates/aggregates/" +templateFile[ type ],
+				m.Paths[ "templates" ]+ "aggregates/" +templateFile[ type ],
 				"output/generated/" +moduleFile[ type ],
 				view )
 
