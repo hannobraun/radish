@@ -1,5 +1,5 @@
-def 'GenerateAggregates', [ 'RenderTemplate' ], ( m ) ->
-	fs = require( 'fs' )
+def "GenerateAggregates", [ "RenderTemplate" ], ( m ) ->
+	fs = require( "fs" )
 
 	directories =
 		"components": "source/code/game/components"
@@ -39,13 +39,13 @@ def 'GenerateAggregates', [ 'RenderTemplate' ], ( m ) ->
 				modules.push( module )
 
 	buildDependencyString = ( dependencies ) ->
-		dependencyString = '[ '
+		dependencyString = "[ "
 
 		for module in dependencies
-			dependencyString += "'" +module+ "', "
+			dependencyString += '"' +module+ '", '
 		dependencyString =
 			dependencyString.substring( 0, dependencyString.length - 2 )
 
-		dependencyString += ' ]'
+		dependencyString += " ]"
 
 	module
