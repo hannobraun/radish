@@ -2,17 +2,17 @@ def "GenerateAggregates", [ "Paths", "RenderTemplate" ], ( m ) ->
 	fs = require( "fs" )
 
 	directory =
-		"components": "components"
-		"entities"  : "entities"
-		"systems"   : "systems"
+		"component": "components"
+		"entity"   : "entities"
+		"system"   : "systems"
 	templateFile =
-		"components": "Components.coffee.mustache"
-		"entities"  : "Entities.coffee.mustache"
-		"systems"   : "Systems.coffee.mustache"
+		"component": "Components.coffee.mustache"
+		"entity"   : "Entities.coffee.mustache"
+		"system"   : "Systems.coffee.mustache"
 	moduleFile =
-		"components": "Components.coffee"
-		"entities"  : "Entities.coffee"
-		"systems"   : "Systems.coffee"
+		"component": "Components.coffee"
+		"entity"   : "Entities.coffee"
+		"system"   : "Systems.coffee"
 
 	module =
 		generateAggregate: ( type ) ->

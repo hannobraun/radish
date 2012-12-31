@@ -4,6 +4,6 @@ require( "../output/tools.js" )
 
 
 load( "GenerateImagePaths" ).generateImagePaths()
-load( "GenerateAggregates" ).generateAggregate( "components" )
-load( "GenerateAggregates" ).generateAggregate( "entities" )
-load( "GenerateAggregates" ).generateAggregate( "systems" )
+load( "GenerateAggregates" ).generateAggregate( "component" )
+load( "GenerateAggregates" ).generateAggregate( "entity" )
+load( "GenerateAggregates" ).generateAggregate( "system" )
