@@ -1,11 +1,11 @@
-def 'StarEntity', [ 'Components' ], ( m ) ->
+def "StarEntity", [ "Components" ], ( m ) ->
 	nextEntityId = 0
 
 	module =
 		entityName: "star"
 
 		createEntity: ( args ) ->
-			movement = m.Components.create( 'movement', {
+			movement = m.Components.create( "movement", {
 				radius: args.radius
 				speed : args.speed } )
 
@@ -13,8 +13,8 @@ def 'StarEntity', [ 'Components' ], ( m ) ->
 			nextEntityId += 1
 
 			entity =
-				id: 'Star ' +id
+				id: "Star " +id
 				components:
-					'positions': m.Components.create( 'position' )
-					'movements': movement
-					'imageIds' : 'star.png'
+					"positions": m.Components.create( "position" )
+					"movements": movement
+					"imageIds" : "star.png"
