@@ -22,7 +22,7 @@ def "Create", [ "RenderTemplate" ], ( m ) ->
 				moduleSuffix[ type ]
 
 			templateFileName =
-				"source/templates/" +templateName[ type ]+ ".coffee.mustache"
+				"source/templates/game-modules/" +templateName[ type ]+ ".coffee.mustache"
 			fileName =
 				"source/code/game/" +directory[ type ]+ "/" +moduleName+ ".coffee"
 			view =
