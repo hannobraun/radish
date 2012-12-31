@@ -14,5 +14,5 @@ def "GenerateImagePaths", [ "Paths", "RenderTemplate" ], ( m ) ->
 
 			m.RenderTemplate(
 				m.Paths[ "templates" ]+ "ImagePaths.coffee.mustache",
-				"output/generated/ImagePaths.coffee",
+				m.Paths[ "generated-code" ]+ "ImagePaths.coffee",
 				view )
