@@ -1,21 +1,6 @@
-* The compile and generate-modules commands should be integrated into a
-  continuous build system.
-* Once there is an integrated, continous build system, run it in a process that
-  also serves the game in development mode. This makes it possible to output
-  status messages (e.g. compilation errors) in the browser.
-* Create funtion that generates component, entity or system modules. The
-  template should not contain any more logic than a call to that function. This
-  way, the template doesn't need to be updated, if the specifics of the modules
-  change. Component module (as an example) could look like this:
-  def.component "componentName", [], ->
-      ...
+Easy:
+
 * Rename output/generated to generated-code.
-* Move entity id generation into the framework. Entity factories should just
-  return a map of components.
-* Create some kind of global entry point that enables developers to perform
-  debugging actions in a running game from the browsers JavaScript console.
-  Use cases:
-  - Creating an entity.
 * Fix directory layout in tests directory. It should mirror the layout in the
   code directory.
 * Replace current EntityUtil module with EntitySet. It has the following
@@ -23,7 +8,8 @@
   - create: Creates an empty set of entities. This replaces the current manual
             creation of gameState.components.
   - add: Adds an entity to the set. The entity is a data structure as returned
-         by an entity factory. Generates an id for the entity and returns it.
+         by an entity factory. Generates an id for the entity (which identifies
+         the entity within the set) and returns it.
   - remove: Removes the entity with the given id from the set. Returns the
             entity object. This entity object resembles those returned by an
             entity factory. Thus, the entity can be added to another set.
@@ -34,6 +20,31 @@
   - Set operations (union, intersection, ...) can be added, that make it easy to
     handle the relation between different sets (different levels, scenes,
     areas).
+* Create funtion that generates component, entity or system modules. The
+  template should not contain any more logic than a call to that function. This
+  way, the template doesn't need to be updated, if the specifics of the modules
+  change. Before this is done, a final decision should be made on whether Radish
+  keeps its own, custom module system or switches to CommonJS AMD.
+  A component module could look like this:
+  def.component "componentName", [], ->
+      ( args ) ->
+          component =
+              x: args.x or 1
+              y: args.y or 2
+
+Hard:
+
+* The compile and generate-modules commands should be integrated into a
+  continuous build system.
+* Once there is an integrated, continous build system, run it in a process that
+  also serves the game in development mode. This makes it possible to output
+  status messages (e.g. compilation errors) in the browser.
+* Convert the config shell script into radish.json. It should be the central
+  place to put all of a game's radish-related configuration.
+* All scripts should search the current directory and, if necessary, its parent
+  directories for radish.json. The script should be executed from the directory
+  where the file is found. It should display an error message, if the file
+  cannot be found.
 * The current model of having one repository and cloning it to create a game
   won't hold up, as radish gets more sophisticated:
   - The current bin directory is only a hack that allows for executing commands
@@ -61,9 +72,3 @@
     this.
   - There could be a controlled way to update to newer radish versions using the
     radish tool.
-* Convert the config shell script into radish.json. It should be the central
-  place to put all of a game's radish-related configuration.
-* All scripts should search the current directory and, if necessary, its parent
-  directories for radish.json. The script should be executed from the directory
-  where the file is found. It should display an error message, if the file
-  cannot be found.
