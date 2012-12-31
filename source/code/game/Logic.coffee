@@ -1,4 +1,4 @@
-def "Logic", [ "Input", "EntityUtil", "Entities", "UpdateStarPositionsSystem" ], ( m ) ->
+def "Logic", [ "Input", "EntityUtil", "Entities", "Systems" ], ( m ) ->
 	# There are functions for creating and destroying entities in the EntityUtil
 	# module. We will mostly use shortcuts however. They are declared here and
 	# defined further down in initGameState.
@@ -34,8 +34,8 @@ def "Logic", [ "Input", "EntityUtil", "Entities", "UpdateStarPositionsSystem" ],
 				speed : -1 } )
 
 		updateGameState: ( gameState, currentInput, gameTimeInS, frameTimeInS ) ->
-			m.UpdateStarPositionsSystem.system(
+			m.Systems.execute( "updateStarPositions", [
 				currentInput,
 				gameTimeInS,
 				gameState.components.positions,
-				gameState.components.movements )
+				gameState.components.movements ] )
