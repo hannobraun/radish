@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+
+var argv = require( "optimist" )
+	.usage( "Usage: $0 componentName" )
+	.demand( [ "_" ] )
+	.argv
+
+require( "../../output/tools.js" )
+
+var componentName = argv._[ 0 ]
+
+load( "Rm" ).rm( "component", componentName )
