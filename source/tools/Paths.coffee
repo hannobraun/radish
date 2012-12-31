@@ -10,11 +10,14 @@ def "Paths", [], ( m ) ->
 		"game-code"     : "source/code/game/"
 
 		"game-directories":
-			"component": "components"
-			"entity"   : "entities"
-			"system"   : "systems"
+			"component": "components/"
+			"entity"   : "entities/"
+			"system"   : "systems/"
 
 		moduleName: ( type, name ) ->
 			name[ 0 ].toUpperCase() +
 				name.substring( 1 ) +
 				moduleSuffix[ type ]
+
+		fileName: ( type, name ) ->
+			module.moduleName( type, name ) + ".coffee"
