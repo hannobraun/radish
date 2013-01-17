@@ -23,11 +23,12 @@ Easy:
   change. Before this is done, a final decision should be made on whether Radish
   keeps its own, custom module system or switches to CommonJS AMD.
   A component module could look like this:
-  def.component "componentName", [], ->
+  def.component "componentName", [], ( m ) ->
       ( args ) ->
           component =
               x: args.x or 1
               y: args.y or 2
+* Replace the practive of having dependencies as submodules. Use npm instead.
 
 Hard:
 
