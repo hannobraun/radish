@@ -3,7 +3,7 @@
 ## About
 
 Radish is an atypical framework for browser games. Contrary to most other
-frameworks, Radish isn't someone elses code that you just use from the outside.
+frameworks, Radish isn't someone else's code that you just use from the outside.
 Radish's code lives in your game's repository, right next to your own code. You
 wish that one of Radish's features worked slightly different? Change it!
 Something's getting in your way? Throw it out!
